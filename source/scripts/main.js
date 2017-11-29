@@ -7,22 +7,22 @@ $(document).ready(() => {
    * Prevent minus to be appended to age input
    */
 
-  const age = document.getElementById('age');
-
-   // Listen for input event on numInput.
-  age.onkeydown = function onkeydown(e) { // eslint-disable-line
-    if (![8, 9, 37, 38, 39, 40].includes(e.keyCode)) {
-      if (age.value.length >= 2) {
-        return false;
-      }
-
-      if (!((e.keyCode > 95 && e.keyCode < 106)
-        || (e.keyCode > 47 && e.keyCode < 58)
-        || e.keyCode === 8)) {
-        return false;
-      }
-    }
-  }
+  // const age = document.getElementById('age');
+  //
+  //  // Listen for input event on numInput.
+  // age.onkeydown = function onkeydown(e) { // eslint-disable-line
+  //   if (![8, 9, 37, 38, 39, 40].includes(e.keyCode)) {
+  //     if (age.value.length >= 2) {
+  //       return false;
+  //     }
+  //
+  //     if (!((e.keyCode > 95 && e.keyCode < 106)
+  //       || (e.keyCode > 47 && e.keyCode < 58)
+  //       || e.keyCode === 8)) {
+  //       return false;
+  //     }
+  //   }
+  // }
 
   /**
    * Contact form selector
@@ -108,26 +108,6 @@ $(document).ready(() => {
     adaptiveHeight: true,
   });
 
-  $contactSlider.on('click', '.registration-next', (event) => {
-    event.preventDefault();
-
-    const form = document.querySelector('.rs-section-registration-form')
-    const serialized = serialize(form, true);
-
-    const errors = validateFirstStep(serialized);
-
-    if (errors.length) {
-      $('.error-field-first').html('Some fields are not properly filled.')
-    } else {
-      $contactSlider.slick('slickNext');
-    }
-  });
-
-  $contactSlider.on('click', '.registration-back', (event) => {
-    event.preventDefault();
-    $contactSlider.slick('slickPrev');
-  });
-
   $contactSlider.on('click', '.registration-submit', (event) => {
     event.preventDefault();
 
@@ -135,25 +115,45 @@ $(document).ready(() => {
     const form = serialize(formEl, true);
     const errors = validateLastStep(form);
 
-    if (form.country_code === 'other') {
-      form.country_code = form.custom_country_code[1];
-    }
-
-    delete form.custom_country_code;
-
     const formString = Object.keys(form).map((key) => {
       const escapedValue = form[key].replace(/\+/g, '%2B');
       return `${key}=${escapedValue}`;
     }).join('&');
 
-    if (errors.length) {
+    function URLToArray(url) {
+      var request = {};
+      var pairs = url.substring(url.indexOf('?') + 1).split('&');
+      for (var i = 0; i < pairs.length; i++) {
+          if(!pairs[i])
+              continue;
+          var pair = pairs[i].split('=');
+          request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+      }
+      return request;
+    }
+
+    const formArray = URLToArray(formString);
+
+    function validateEmail(mail) {
+     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
+    if (validateEmail(formArray.email)) {
+      $('.error-field-last').html('Some fields are not properly filled.')
+    } else if (formArray.email !== formArray.email_confirmation) {
+      $('.error-field-last').html('Some fields are not properly filled.')
+    } else if (formArray.password !== formArray.password_confirmation) {
+      $('.error-field-last').html('Some fields are not properly filled.')
+    } else if (errors.length) {
       $('.error-field-last').html('Some fields are not properly filled.')
     } else {
       $.ajax(`http://members.rensource.energy/webapi/default/webapi?secret=u&${formString}`)
         .then(
           () => {
-            $contactForm.hide();
-            $contactSuccess.show();
+            window.location.replace('http://rs.testgebiet.com/onboarding/verify');
           },
           (error) => {
             let { responseText } = error;
@@ -168,19 +168,8 @@ $(document).ready(() => {
     }
   });
 
-  function validateFirstStep(fields) {
-    const requiredFields = ['name', 'surname', 'email', 'age', 'product_interest'];
-    const err = [];
-
-    requiredFields.forEach((field) => {
-      if (!fields.hasOwnProperty(field)) { err.push(field); } // eslint-disable-line
-    });
-
-    return err;
-  }
-
   function validateLastStep(fields) {
-    const requiredFields = ['country_code', 'phone_number', 'city', 'address'];
+    const requiredFields = ['firstname', 'lastname', 'gender', 'email', 'email_confirmation', 'password', 'password_confirmation', 'product_interest'];
     const err = [];
 
     requiredFields.forEach((field) => {
