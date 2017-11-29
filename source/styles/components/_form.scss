@@ -1,0 +1,43 @@
+.form {
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"] {
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    display: block;
+    width: 100%;
+    margin: 2rem 0;
+    line-height: 2rem;
+    font-size: .875rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    outline: none;
+    transition-duration: 250ms;
+
+    &:active,
+    &:target,
+    &:focus {
+      border-bottom-color: #a5c44c;
+    }
+  }
+
+  select {
+    appearance: none;
+    border: 1px solid #eee;
+    line-height: 2.5rem;
+    padding: 0 1rem;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: .875rem;
+    color: inherit;
+    outline: none;
+    border-radius: 20px;
+    background: none;
+    background-image: url(../images/icons/icn-dropdown.svg);
+    background-position: right 20px center;
+    background-repeat: no-repeat;
+    min-width: 200px;
+  }
+}

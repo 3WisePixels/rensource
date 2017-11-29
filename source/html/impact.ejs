@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include partials/head.ejs %>
+</head>
+<body class="page-company">
+  <%- include partials/preloader.ejs %>
+
+  <div class="page">
+    <section class="rs-section-headline rs-section-headline--left">
+      <%- include partials/header.ejs %>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="/images/sections/distribution/map.svg" class="map" alt="">
+          </div>
+          <div class="col-sm-7 offset-sm-1">
+            <h3 data-0="opacity: 1;" data-300="opacity: 0">Impact</h3>
+            <p data-0="opacity: 1;" data-300="opacity: 0">
+              Rensource based in Lagos, Africa’s most populous city, is on a mission to transform Nigeria into the first country predominantly reliant on distributed renewables based power generation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section><!-- END.Teaser -->
+
+    <section class="rs-section-power">
+      <div class="rs-section-power-overlay" data-500="opacity: 0" data-600="opacity: .6;"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="bulb" data-500="opacity: 0;" data--200-top-bottom="transform: translate3d(0, -50px, 0)" data-bottom-top="transform: translate3d(0, 20px, 0)" data-600="opacity: 1;">
+              <div class="lightning" style="opacity: .7;"></div>
+            </div>
+          </div>
+          <div class="col-sm-6 flex-sm-first">
+            <h4>Grid supplied power consumption in Nigeria is 149kWh per capita.</h4>
+            <br>
+            <h4>The equivalent of keeping one dim lightbulb switched on  for a few hours per day.</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section-distribution">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <img src="/images/sections/distribution/generators.png" class="generators" data-retina alt="" data-top-bottom="transform: translateY(-180px)" data-bottom-top="transform: translateY(180px)">
+          </div>
+          <div class="col-sm-6">
+            <h3>Distributed generation of the wrong variety</h3>
+            <p>The noise and fumes of dirty, expensive generators are an unfortunate constant of daily life for Nigerians – consumers and business alike.</p>
+
+            <div class="facts">
+              <div class="fact">
+                <div class="fact-icon"><span data-countup="70">70</span>%</div>
+                <div class="fact-text">
+                  of sub-Saharan energy self-generation capacity is in Nigeria
+                </div>
+              </div>
+
+              <p>provided by</p>
+
+              <div class="fact">
+                <div class="fact-icon"><span data-countup="60">60</span>m</div>
+                <div class="fact-text">
+                  fossil fuel generators in Nigeria
+                </div>
+              </div>
+
+              <p>generating</p>
+
+              <div class="fact">
+                <div class="fact-icon"><span data-countup="29">29</span>m</div>
+                <div class="fact-text">
+                  Tons of Carbon Dioxide annually
+                </div>
+              </div>
+
+              <p>contributing significantly to</p>
+
+              <div class="fact">
+                <div class="fact-icon">
+                  <img src="/images/sections/distribution/logo.png" alt="">
+                </div>
+                <div class="fact-text">
+                  <a href="https://www.theguardian.com/global-development/2016/oct/20/air-pollution-deadlier-africa-than-dirty-water-or-malnutrition-oecd" target="_blank">
+                    The OECD declaring air pollution as the leading cause of death in Africa
+                    <img src="/images/icons/icn-launch.svg" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="rs-section-logomark">
+      <div class="container">
+        <img src="/images/logomark.png" data-retina alt="">
+
+        <h2>What Rensource is doing</h2>
+        <p>Technological development and lower cost of solar-hybrid systems means that polluting, fossil-fuel based generators can be either replaced outright or relegated to their original use a back-up while powering homes and businesses with solar based solutions.</p>
+        <p>Rensource is leading this charge in Nigeria.</p>
+        <a href="company" class="button button-green">Meet our team</a>
+      </div>
+    </section>
+
+    <%- include partials/battery.ejs %>
+    <%- include partials/registration.ejs %>
+    <%- include partials/footer.ejs %>
+  </div>
+
+  <%- include partials/scripts.ejs %>
+</body>
+</html>

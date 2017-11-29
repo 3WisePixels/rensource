@@ -1,0 +1,118 @@
+.rs-section-stories {
+  background: #060919;
+  position: relative;
+
+  &,
+  .row {
+    height: 47rem;
+
+    @include media-breakpoint-down(xl) {
+      height: 60rem;
+    }
+  }
+
+  .title {
+    position: absolute;
+    top: 3rem;
+    text-transform: uppercase;
+    font-size: .8125rem;
+    font-weight: 500;
+  }
+
+  .slider .slick-slide {
+    color: white;
+
+    background-position: right -100px center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+
+    p {
+      font-size: 1.125rem;
+      font-weight: 100;
+    }
+  }
+
+  .slick-arrow {
+    position: absolute;
+    z-index: 8;
+    height: 46px;
+    width: 46px;
+    top: 50%;
+    margin-top: -20px;
+    outline: none;
+    border: 0;
+    text-indent: -999em;
+    background-color: transparent;
+    background-size: 20px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @include media-breakpoint-down(lg) {
+      display: none !important;
+    }
+  }
+
+  .slick-prev {
+    background-image: url(../images/icons/icn-arrow-prev.svg);
+    left: 1.5rem;
+  }
+
+  .slick-next {
+    background-image: url(../images/icons/icn-arrow-next.svg);
+    right: 1.5rem;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .dots-container {
+    position: absolute;
+    bottom: 4rem;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .slick-dots {
+    padding: 0;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    li {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      margin-right: 20px;
+      position: relative;
+
+      button {
+        appearance: none;
+        width: 4px;
+        height: 4px;
+        margin: 0;
+        border-radius: 50%;
+        padding: 0;
+        border: 0;
+        background: white;
+        outline: none;
+        position: relative;
+        text-indent: -9999em;
+      }
+
+      &.slick-active button::after {
+        content: '';
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid rgba(white, .2);
+        position: absolute;
+        top: -7px;
+        left: 1px;
+        margin-left: -8px;
+        display: block;
+      }
+    }
+  }
+}

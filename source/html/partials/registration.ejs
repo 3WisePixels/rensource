@@ -1,0 +1,132 @@
+<section class="rs-section-registration" id="Register">
+  <div class="container">
+    <h3 class="centered">
+      <b>Subscribe</b> now
+    </h3>
+    <p class="text-xs-center">Get started on the path towards energy independence by answering a few simple questions.</p>
+
+    <div class="rs-section-registration-success" style="display: none;">
+      <img src="/images/icons/icn-mark-big.svg" alt="">
+      <br><br>
+      <h2>Thank you!</h2>
+      <p>You’ve successfully registered and will receive further instructions over email shortly.</p>
+    </div>
+    <form class="rs-section-registration-form" autocomplete="off">
+      <div class="container">
+        <div class="rs-section-registration-slider">
+          <div>
+            <div class="row">
+              <div class="col-sm-3">
+                <input autocomplete="off" type="text" name="name" placeholder="Name" id="name">
+              </div>
+              <div class="col-sm-3">
+                <input autocomplete="off" type="text" name="surname" placeholder="Surname">
+              </div>
+              <div class="col-sm-6">
+                <input autocomplete="off" type="email" name="email" placeholder="Email">
+              </div>
+              <div class="col-sm-12">
+                <br>
+              </div>
+              <div class="col-sm-3">
+                <input autocomplete="off" type="number" id="age" name="age" placeholder="Age" min="16" maxlength="2">
+              </div>
+              <%# <div class="col-sm-5">
+                <select name="gender" id="">
+                  <option value="" disabled selected>Sex</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>%>
+              <div class="col-sm-9">
+                <select name="product_interest" id="product_interest">
+                  <option value="" disabled selected>Subscription Tier</option>
+                  <option value="Go">Go</option>
+                  <option value="Eco - Waiting List">Eco</option>
+                  <option value="Duplo - Waiting List">Duplo</option>
+                  <option value="Pro - Waiting List">Pro - Waiting List</option>
+                  <!--<option value="Other">Other</option> -->
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <span class="error-field-first"></span>
+              </div>
+              <div class="col-xs-6 text-xs-right">
+                <button class="button button-green registration-next">Next step</button>
+              </div>
+            </div>
+          </div><!-- SLIDE END -->
+
+          <div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="row row-clear">
+                  <div class="col-sm-12">
+                    <select name="country_code">
+                      <option value="" disabled selected>Country Code</option>
+                      <option value="+234">+234</option>
+                      <option value="+44">+44</option>
+                      <option value="+1">+1</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6 hidden">
+                    <input autocomplete="off" type="text" name="custom_country_code" placeholder="Custom" value="+">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <input autocomplete="off" type="number" name="phone_number" placeholder="Phone Number">
+              </div>
+              <div class="col-sm-12">
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <input autocomplete="off" type="text" name="address" placeholder="Address">
+              </div>
+              <div class="col-sm-6">
+                <input autocomplete="off" type="text" name="city" placeholder="City">
+              </div>
+              <div class="col-sm-12">
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <input autocomplete="off" type="text" name="referral_code" placeholder="Referral Code">
+              </div>
+              <div class="col-sm-6">
+                <input autocomplete="off" type="text" name="agent_code" placeholder="Agent Code">
+              </div>
+              <div class="col-sm-12"><br></div>
+              <div class="col-sm-6">
+                <label>
+                   <input autocomplete="off" type="checkbox" name="agent" value="Agent">
+                   &nbsp; &nbsp; &nbsp; I want to be an Agent
+                </label>
+              </div>
+              <div class="col-sm-6">
+                <label>
+                   <input autocomplete="off" type="checkbox" name="installer" value="Installer">
+                   &nbsp; &nbsp; &nbsp; I want to be an installer
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <span class="error-field-last"></span>
+              </div>
+              <div class="col-xs-6 text-xs-right">
+                <button class="button button-orange registration-back">back</button>
+                &nbsp;&nbsp;&nbsp;
+                <button class="button button-green registration-submit" data-replace>Get started</button>
+              </div>
+            </div>
+          </div><!-- SLIDE END -->
+        </div>
+      </div>
+    </form>
+  </div>
+</section><!-- END.Registration -->

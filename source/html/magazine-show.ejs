@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include partials/head.ejs %>
+</head>
+<body class="page-magazine">
+  <%- include partials/preloader.ejs %>
+
+  <div class="page">
+    <section class="rs-section-headline">
+      <%- include partials/header.ejs %>
+
+      <div class="container">
+        <h3 class="centered" data-0="opacity: 1;" data-300="opacity: 0"><%= title %></h3>
+        <p data-0="opacity: 1;" data-300="opacity: 0" class="text-xs-center"><%= createdAtFormatted %></p>
+      </div>
+    </section>
+
+    <section class="rs-section-magazine-show">
+      <div class="container">
+        <p><%= text %></p>
+      </div>
+    </section>
+
+    <%- include partials/registration.ejs %>
+    <%- include partials/footer.ejs %>
+  </div>
+
+  <%- include partials/scripts.ejs %>
+</body>
+</html>

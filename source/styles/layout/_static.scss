@@ -1,0 +1,68 @@
+.page-static {
+  background: white;
+}
+
+.static {
+  position: relative;
+
+  .row {
+    min-height: 100vh;
+    align-items: stretch;
+  }
+
+  .sidebar,
+  .content {
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+  }
+
+  .sidebar::after {
+    position: absolute;
+    right: 0;
+    padding-right: 3333rem;
+    // margin-right: -3333rem;
+    top: 0;
+    bottom: 0;
+    width: 33.33333%;
+    content: '';
+    background: #fbfbfb;
+    border-right: 1px solid #eee;
+    z-index: -1;
+  }
+
+  .sidebar-heading {
+    font-size: 1.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar ul,
+  .sidebar li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.25rem;
+  }
+
+  .sidebar li {
+    padding-left: 1rem;
+    line-height: 1.7em;
+  }
+
+  .sidebar a {
+    color: #222;
+    font-weight: 300;
+  }
+
+  .content {
+    h1, h2, h3, h4, h5, h6, p { font-weight: 300; }
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem }
+    h3:before { display: none; }
+    h4 { font-size: 1.25rem; font-weight: 500; }
+    h5 { font-size: 1rem; font-weight: 500; }
+    h6 { font-size: .875rem; font-weight: 500; }
+
+    p { font-size: 1.125rem; margin: 1rem 0; line-height: 1.8em; }
+  }
+}

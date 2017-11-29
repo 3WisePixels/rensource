@@ -1,0 +1,94 @@
+.rs-switcher {
+  background: white;
+  border-radius: .625rem;
+  padding: 1.25rem;
+  // width: 360px;
+  min-height: 6.25rem;
+  box-shadow: 0 .75rem 1.5rem rgba(black, .2);
+  user-select: none;
+
+  &-text {
+    color: #444;
+    border-bottom: 1px solid #eee;
+    padding: .5rem .5rem 1rem;
+
+    h2, p { margin: 0; font-weight: 100; }
+    h2 { font-size: 1.5rem; margin-bottom: .5rem; }
+    p { font-size: .875rem; line-height: 1.4rem;}
+  }
+
+  &-input {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 1rem .5rem 0;
+
+    &--alternate {
+      flex-direction: column;
+      justify-content: center;
+
+      > div:nth-of-type(2) {
+        width: 200px;
+        margin: 75px 0;
+        transform: rotate(90deg);
+      }
+    }
+
+    // Unchecked
+    input {
+      visibility: hidden;
+      position: absolute;
+    }
+    label {
+      width: 100%;
+      background: #eee;
+      height: 2.2rem;
+      display: block;
+      position: relative;
+      cursor: pointer;
+      padding: .25rem;
+      margin: 0;
+      border-radius: 1.25rem;
+    }
+    label span {
+      display: block;
+      width: 1.7rem;
+      height: 1.7rem;
+      border: .25rem solid transparent;
+      border-radius: 1rem;
+      background: #d8d8d8;
+      position: absolute;
+      left: .25rem;
+      transition-duration: 250ms;
+    }
+
+    label:hover span {
+      width: 2.5rem;
+    }
+
+    // Checked
+    input:checked ~ label span {
+      left: calc(100% - 2rem);
+    }
+    input:checked ~ label:hover span {
+      left: calc(100% - 2.8rem);
+    }
+
+    .col:first-child,
+    .col:last-child {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      font-size: .875rem;
+      color: #444444;
+      text-transform: uppercase;
+
+      img { margin-right: .5rem; }
+    }
+
+    .col:not(:first-child, :last-child) {
+      flex: 1 1 auto;
+      padding: 0 2rem;
+    }
+  }
+}

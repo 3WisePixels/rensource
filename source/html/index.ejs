@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include partials/head.ejs %>
+</head>
+<body class="page-homepage">
+  <%- include partials/preloader.ejs %>
+
+  <div class="page">
+    <section class="rs-section-teaser rs-section-teaser--night">
+      <div class="rs-section-teaser-night"></div>
+      <div class="container">
+        <%- include partials/header.ejs %>
+
+        <div class="rs-section-teaser-content">
+          <h1 class="rs-headline">
+            <span>Diesel & petrol bills keeps going up?</span>
+            <b>Say <span>hi</span> to Rensource.</b>
+          </h1>
+          <p>Rensource is Nigeria’s leading provider of power-as-a-service. We offer a subscription based energy service that provides you with the power you need to live your best life.</p>
+
+          <img src="/images/icons/icn-arrow-down.svg" class="arrow" alt="">
+        </div>
+      </div>
+
+      <div id="turn-lights-on" class="container">
+        <div class="col-lg-5 offset-lg-7 col-xl-4 offset-xl-8">
+          <section class="rs-section-teaser-switcher rs-switcher hidden-md-down" style="transform: translate3d(0, -140px, 0)">
+            <div class="rs-switcher-text">
+              <h2>Power when you want it.</h2>
+              <p>A Rensource subscription includes everything you need to enjoy a seamless power experience. <br><br> We deploy our power system to your home, providing service and maintenance for the tenor of your subscription.</p>
+            </div>
+
+            <div class="rs-switcher-input">
+              <div class="col">
+                <img src="/images/icons/icn-sun.svg" alt="">
+                Day
+              </div>
+              <div class="col">
+                <input type="checkbox" id="is_night" name="is_night" checked>
+                <label for="is_night">
+                  <span></span>
+                </label>
+              </div>
+              <div class="col">
+                <img src="/images/icons/icn-moon.svg" alt="">
+                Night
+              </div>
+            </div>
+          </section><!-- END.Switcher -->
+        </div>
+      </div>
+
+      <div class="rs-section-teaser-lights hidden-md-down">
+        <div class="rs-section-teaser-light"></div>
+        <div class="rs-section-teaser-light"></div>
+        <div class="rs-section-teaser-light"></div>
+      </div>
+
+      <div class="rs-section-teaser-indicator"></div>
+    </section><!-- END.Teaser -->
+
+    <section class="rs-section-about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 offset-md-0 col-xs-10 offset-xs-1 text-xs-center text-lg-left">
+            <img data-gif-src="/images/sections/about/illustration.gif" alt="">
+          </div>
+          <div class="col-xs-12 hidden-lg-up"><br /></div>
+          <div class="col-lg-6 col-md-12 flex-lg-first text-xs-center text-lg-left">
+            <h3>
+              Your life. Electrified.<br />
+			  <b>We take care of everything.</b>
+			</h3>
+            <p><a href="#Register">Register now</a> to determine a suitable subscription tier for you. Provide some basic information and one of our qualified engineers will be dispatched to your home or office.</p>
+            <p>Once you’ve subscribed, our power system is installed at your home or office, and will continue to be maintained and serviced by Rensource. It can even follow you if you decide to move!</p>
+            <p>Sit back, relax, and switch on the lights.</p>
+          </div>
+        </div>
+      </div>
+    </section><!-- END.About -->
+
+    <section class="rs-section-benefits">
+      <div class="container">
+        <h3 class="centered">
+          Subscription <b>has it's benefits</b>
+        </h3>
+
+        <div class="row">
+          <div class="col-lg col-xs-12">
+            <div class="rs-section-benefits-item">
+              <div class="icon">
+                <img src="/images/icons/icn-giving-hand.svg" alt="">
+              </div>
+              <h4 class="title">Build your Profile</h4>
+              <p>By regularly paying your subscription fee, you not only power your home, but also build a score that entitles you to exclusive benefits in the form of products and services that simplify your life.</p>
+            </div>
+          </div>
+          <div class="col-lg col-xs-12">
+            <div class="rs-section-benefits-item">
+              <div class="icon">
+                <img src="/images/icons/icn-around-clock.svg" alt="">
+              </div>
+              <h4 class="title">Power on demand</h4>
+              <p>Rensource provides power on demand, not only when PHCN offers it. Our system generates and then stores excess power so you can use it when you need it.</p>
+              <p>There is no independence quite like energy independence.</p>
+            </div>
+          </div>
+          <div class="col-lg col-xs-12">
+            <div class="rs-section-benefits-item">
+              <div class="icon">
+                <img src="/images/icons/icn-phone.svg" alt="">
+              </div>
+              <h4 class="title">Clean & quiet</h4>
+              <p>The world’s cleanest and most quiet power plant, right in your own home. No unhealthy fumes and no noise.</p>
+              <p>Rensource works invisibly in the background to give you the energy you need when you want it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- END.Benefits -->
+
+    <section class="rs-section-plans text-xs-center text-sm-left">
+      <div class="container">
+        <h3 class="centered">
+          One of our subscription plans <b>looks like you</b>
+        </h3>
+
+        <div class="row">
+          <div class="col-xl-8 col-lg-12">
+            <table>
+              <thead>
+                <tr>
+                  <th width="23"><a href="subscription">Go</a></th>
+                  <th width="23"><a href="subscrption">Eco</a></th>
+                  <th width="23"><a href="subscription">Duplo</a></th>
+                  <th width="23"><a href="subscription">Pro</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-headline="Go">Our introductory tier, Go, provides enough energy for basic appliances like lights, fans, a stereo, a television, and even energy efficient refrigeration.</td>
+                  <td data-headline="Eco">Eco builds on the Go tier by providing support for additional appliances such as televisions, a microwave, larger refrigeration capacity and, in some cases, a freezer.</td>
+                  <td data-headline="Duplo">The Duplo subscription tier supports a similar set of appliances as the Eco but provides for greater autonomy and longer evening use.</td>
+                  <td data-headline="Pro">Our most advanced subscription tier, Pro provides even more hours of autonomy than the Duplo but also supports the use of power-hungry appliance such as water pumps, water heaters, washers, and dryers.</td>
+                </tr>
+              </tbody>
+            </table>
+				<p><small>** Illustrative description only. The exact appliances supported will depend on a detailed energy audit of your home or office before the subscription starts.</small></p>
+		  </div>
+          <div class="col-sm-4 hidden-lg-down text-xs-center">
+            <img src="/images/sections/plans/battery.png" data-retina alt="">
+          </div>
+        </div>
+
+        <br/><br/>
+
+        <div class="row">
+          <div class="col-sm-8">
+            Follow these links to learn more about our subscription plans and technology
+          </div>
+          <div class="col-xs-12 hidden-sm-up"><br /></div>
+          <div class="col-sm-4 text-xs-center">
+            <a href="subscription" class="button button-green">Subscriptions</a>
+            <a href="technology" class="button button-blank">Technology</a>
+          </div>
+        </div>
+      </div>
+    </section><!-- END.Plans -->
+
+    <section class="rs-section-features">
+      <div class="container">
+        <h3 class="centered">
+          Subscription Includes:
+        </h3>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="icon">
+              <img src="/images/icons/icn-installation.svg" alt="">
+            </div>
+            <h5>Installation & Commissioning</h5>
+            <p>We take care of delivery, installation, and commissioning of the system associated with your subscription tier.</p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="icon">
+              <img src="/images/icons/icn-moving.svg" alt="">
+            </div>
+            <h5>Moving Service</h5>
+            <p>Worried you might have to switch homes during your subscription period? We’ll happily decommission the powerbox and re-install it at your new location at no additional cost.</p>
+          </div>
+          <div class="col-xs-12 hidden-lg-up hidden-sm-down"><br /></div>
+          <div class="col-lg-3 col-md-6">
+            <div class="icon">
+              <img src="/images/icons/icn-id.svg" alt="">
+            </div>
+            <h5>Exclusive community benefits</h5>
+            <p>Subscribers get discounts from select service providers as well as invitations to community events.</p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="icon">
+              <img src="/images/icons/icn-cancel.svg" alt="">
+            </div>
+            <h5>Introductory Trial</h5>
+            <p>Want to see what energy independence is like. Free cancellation up until the first thirty days of your subscription.</p>
+          </div>
+        </div>
+
+        <section class="rs-customer-care">
+          <img src="/images/sections/features/label.png" data-retina alt="Customer Care">
+
+          <div class="rs-customer-care-content">
+            <h2>Maintenance and customer care included</h2>
+            <p>Our customer service team is on-call and can deploy technicians to solve any issues you may have. We’re here to help.</p>
+          </div>
+        </section><!-- END.Customer Care -->
+      </div>
+    </section><!-- END.Features -->
+
+    <%- include partials/stories.ejs %>
+    <%- include partials/registration.ejs %>
+    <%- include partials/footer.ejs %>
+  </div>
+
+  <%- include partials/scripts.ejs %>
+</body>
+</html>

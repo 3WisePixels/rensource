@@ -1,0 +1,63 @@
+.rs-section-similar {
+  background: white;
+  padding: 0 0 4rem;
+  color: rgba(#000, .6);
+  font-weight: 300;
+  font-size: 1rem;
+  margin-top: -1rem;
+
+  @include media-breakpoint-down(md) {
+    font-size: .875rem;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-weight: 300;
+  }
+
+  table { width: 100%; }
+
+  th { font-size: 1.125em; width: 15%; font-weight: 400; }
+  td { width: 21.25%; }
+  thead th { font-weight: 500; }
+  thead tr > * { padding-bottom: 4rem; }
+  tbody tr { vertical-align: top; }
+  tbody tr > * { padding: 2rem 1rem; border-bottom: 1px solid #eee; }
+
+  .avatar {
+    border-radius: 30rem;
+    border: 1px solid #eee;
+    padding: 4px;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: .5rem;
+      border-radius: 30rem;
+      max-width: 45px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .table-wrapper {
+      width: 100%;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+
+      table { width: 300%; }
+    }
+  }
+
+  .darken {
+    background: rgba(0,0,0,.02);
+  }
+
+  .highlight {
+    box-shadow: 5px 5px 32px 0px rgba(0,0,0,0.08);
+
+    td, th {
+      padding: 1rem 1rem !important;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.rs-section-systems {
+  background: white;
+  padding: 6.25rem 0;
+
+  @include media-breakpoint-down(sm) {
+    padding: 3rem 0;
+  }
+
+  .illustration {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: 100%;
+
+    &:nth-of-type(1) { max-width: 502px; }
+    &:nth-of-type(2) { max-width: 381px; }
+    &:nth-of-type(3) { max-width: 129px; }
+
+    @include media-breakpoint-down(sm) {
+      &:nth-of-type(1) { max-width: 80vw; }
+      &:nth-of-type(2) { max-width: 66vw; }
+      &:nth-of-type(3) { max-width: 80px; }
+    }
+  }
+
+  .illustration-wrapper {
+    @include media-breakpoint-down(sm) {
+      padding: 0 10%;
+
+    }
+  }
+}

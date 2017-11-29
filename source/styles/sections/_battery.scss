@@ -1,0 +1,37 @@
+.rs-section-battery {
+  padding: 3.5rem 0;
+  background: #080b1a;
+  color: white;
+  position: relative;
+
+  @include media-breakpoint-down(md) {
+    padding-bottom: 11rem;
+  }
+
+  h2 {
+    font-weight: 300;
+    line-height: 1.4em;
+    margin-bottom: 2rem;
+  }
+
+  .battery {
+    bottom: 0;
+    position: absolute;
+
+    @include media-breakpoint-down(md) {
+      left: 50%;
+      transform: translateX(-50%) scale(.6);
+      transform-origin: 50% 100%;
+      // margin-left: 0 !important;
+    }
+  }
+
+  .battery-big {
+    margin-left: 40px;
+    max-width: 320px;
+
+    @include media-breakpoint-down(lg) {
+      margin-left: -50px;
+    }
+  }
+}

@@ -1,0 +1,113 @@
+.rs-article-box {
+  background: #F8F8F8;
+  box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.06);
+  border-radius: 5px;
+  background-size: 105%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 25vw;
+  display: block;
+  position: relative;
+  text-decoration: none !important;
+  margin: 10px 0;
+  transition: all 300ms ease;
+  max-height: 350px;
+
+  @include media-breakpoint-down(md) {
+    height: 35vw;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: 75vw;
+  }
+
+  &:hover {
+    background-size: 100%;
+    box-shadow: 0px 7px 16px 0px rgba(0,0,0,0.06);
+  }
+
+  &-Holder {
+    background: #fff;
+    padding-bottom: 120px;
+  }
+
+  &-Info {
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 30px;
+
+    h5 {
+      margin: 0;
+      opacity: 0.79;
+      font-weight: normal;
+      font-size: 22px;
+      color: #000000;
+      line-height: 30px;
+
+      span {
+        display: block;
+        opacity: 0.5;
+        font-weight: lighter;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &--Medium {
+
+  }
+
+  &--Instagram {
+    img {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+  }
+
+  &--Twitter, &--Facebook {
+    background: #059ff5 !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+
+    &:hover {
+      background: rgba(0, 157, 248, .8) !important;
+    }
+
+    img {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+    h5 {
+      font-size: 22px;
+      color: #FFFFFF;
+      font-weight: normal;
+      line-height: 30px;
+      margin: 0;
+      margin-top: 10px;
+
+      span {
+        opacity: 0.79;
+        font-size: 16px;
+        margin-top: 20px;
+        display: block;
+      }
+    }
+  }
+
+  &--Facebook {
+    background: #3b5998 !important;
+
+    &:hover {
+      background: rgba(#3b5998, .8) !important;
+    }
+  }
+}

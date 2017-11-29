@@ -1,0 +1,92 @@
+.rs-section-power {
+  position: relative;
+  @include image-2x('../images/sections/power/background-night', 'png', auto, auto);
+
+  padding: 0;
+  color: white;
+  overflow: hidden;
+  // @extend .text-xs-center;
+
+  .row {
+    height: 550px;
+    align-items: stretch;
+
+    @include media-breakpoint-down(sm) {
+      height: auto;
+    }
+  }
+
+  .col-sm-6:last-child {
+    align-self: center;
+
+    @include media-breakpoint-down(sm) {
+      margin-top: 360px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &,
+  &-overlay {
+    background-size: cover;
+    background-position: top center;
+
+    @include media-breakpoint-down(sm) {
+      background: #bad7da !important;
+    }
+  }
+
+  &-overlay {
+    position: absolute;
+    @include image-2x('../images/sections/power/background-day', 'png', auto, auto);
+    background-size: cover;
+    background-position: top center;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .bulb {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -100px;
+    width: 200px;
+    height: 22.5rem;
+    @include image-2x('../images/sections/power/bulb', 'png', 200px, 22.5rem);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    .lightning {
+      width: 345px;
+      height: 345px;
+      @include image-2x('../images/sections/power/bulb-shine', 'png', 345px, 345px);
+      position: absolute;
+      bottom: -100px;
+      left: -75px;
+    }
+  }
+
+  h4 {
+    font-weight: 300;
+    font-size: 2rem;
+    // padding: 0 10%;
+    letter-spacing: 0;
+    line-height: 1.5em;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 2rem;
+      // padding: 0 15px;
+    }
+  }
+
+  p {
+    font-weight: 400;
+    opacity: .7;
+  }
+}

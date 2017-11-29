@@ -1,0 +1,40 @@
+.rs-footer {
+  background: #080b1a;
+  padding-top: 10rem;
+  padding-bottom: 4rem;
+  font-weight: 300;
+  color: #9c9da3;
+
+  @include media-breakpoint-down(md) {
+    font-size: .875rem;
+  }
+
+  .logo {
+    margin-bottom: 1rem;
+  }
+
+  .row:first-child {
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  .heading {
+    color: white;
+    text-transform: uppercase;
+    font-size: inherit;
+    font-weight: 500;
+    margin-bottom: .5rem;
+  }
+
+  ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    line-height: 2em;
+  }
+}

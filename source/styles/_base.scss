@@ -1,0 +1,93 @@
+/* ====================
+  Base
+  ===================== */
+
+// @include media-breakpoint-down(md) {
+//   html, body { font-size: 14px; }
+// }
+
+body {
+  background: white;
+  font-family: "Roboto", "Helvetica", "Arial", "Verdana", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  background: #fafafa;
+}
+
+a { color: #a4c642; }
+
+* {
+  box-sizing: border-box;
+}
+
+.row { align-items: center; }
+.row-start { align-items: flex-start; }
+.row-clear { margin-bottom: 0 !important; }
+
+img { max-width: 100%; }
+
+h3 {
+  font-size: 2.5rem;
+  line-height: 1.3em;
+  font-weight: 100;
+
+  &.centered {
+    text-align: center;
+
+    &::before {
+      margin: 0 auto 1rem;
+    }
+  }
+
+  b {
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    &::before {
+      content: '';
+      height: 2px;
+      width: 30px;
+      display: block;
+      background: #a5c44c;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+p {
+  font-weight: 300;
+}
+
+.LinkedIn {
+  opacity: 0;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 10px auto 0;
+
+  .rs-section-team-avatar & {
+    opacity: 1;
+  }
+
+  &-Holder {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 22px);
+  }
+}
+
+.slick-current {
+  .LinkedIn {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none !important;
+}

@@ -1,0 +1,32 @@
+.rs-section-headline {
+  background: white;
+  padding: 11rem 0 8rem;
+
+  @include media-breakpoint-down(sm) {
+    padding: 8rem 0 5rem;
+  }
+
+  h3 {
+    font-size: 3.25rem;
+    margin-bottom: 1rem;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: #7c7c7c;
+    text-align: justify;
+    // text-align-last: center;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 1rem;
+    }
+  }
+
+  &--small {
+    padding: 5rem 0 .01rem;
+  }
+}

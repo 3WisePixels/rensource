@@ -1,0 +1,41 @@
+.copyright {
+  border: 1px solid #202231;
+  height: 2.5rem;
+  display: inline-flex;
+  line-height: 2.5rem;
+  border-radius: 1.25rem;
+  user-select: none;
+
+  @include media-breakpoint-down(sm) {
+    margin: 0 auto;
+  }
+
+  &-part {
+    flex: 0 0 auto;
+    padding: 0 1.5rem;
+    color: white;
+    font-weight: 400;
+    font-size: .875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media-breakpoint-down(sm) {
+      padding: 0 1rem;
+      font-size: .8125rem;
+    }
+
+    img {
+      margin-right: 1rem;
+      width: 18px;
+
+      @include media-breakpoint-down(sm) {
+        margin-right: .5rem;
+      }
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid #202231;
+    }
+  }
+}

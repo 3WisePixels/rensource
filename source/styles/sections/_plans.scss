@@ -1,0 +1,70 @@
+.rs-section-plans {
+  background: white;
+  padding: 6.25rem 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+
+  h3 {
+    margin-bottom: 5.25rem;
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-bottom: 1px solid #f4f4f4;
+
+    @include media-breakpoint-down(sm) {
+      border: 0;
+    }
+  }
+
+  th {
+    background: #fafafa;
+    border-bottom: 1px solid #f4f4f4;
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  th, td {
+    padding: 1rem;
+  }
+
+  tbody tr > * {
+    vertical-align: top;
+  }
+
+  th {
+    font-size: .875rem;
+  }
+
+  td {
+    font-size: .875rem;
+    font-weight: 300;
+
+    @include media-breakpoint-down(sm) {
+      display: block;
+      padding: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+
+      &::before {
+        content: attr(data-headline);
+        display: block;
+        font-weight: 500;
+        font-size: 1.125rem;
+        margin-bottom: .5rem;
+      }
+    }
+  }
+
+  img {
+    max-width: 280px;
+  }
+}

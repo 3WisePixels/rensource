@@ -1,0 +1,54 @@
+.rs-section-print {
+  background: white;
+  padding: 4rem 0;
+
+  font-size: .875rem;
+  line-height: 1.7em;
+
+  @include media-breakpoint-down(md) {
+    font-size: .8125rem;
+  }
+
+  .row {
+    // align-items: stretch;
+  }
+
+  .col-sm-1 {
+    display: flex;
+  }
+
+  .p {
+    margin-bottom: 3rem;
+  }
+
+  .vr {
+    height: 100%;
+    background: #eee;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 50%;
+  }
+
+  h6 {
+    font-weight: 300;
+    font-size: 1.714285714em;
+    color: #A5C44C;
+    line-height: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  h5 {
+    font-weight: 400;
+    font-size: 1.285714286em;
+    color: #222222;
+    letter-spacing: 0;
+    line-height: 24px;
+  }
+
+  p {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}

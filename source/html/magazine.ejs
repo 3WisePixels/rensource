@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include partials/head.ejs %>
+</head>
+<body class="page-magazine">
+  <%- include partials/preloader.ejs %>
+
+  <div class="page">
+    <section class="rs-section-headline">
+      <%- include partials/header.ejs %>
+
+      <div class="container text-xs-center">
+        <h3 class="centered" data-0="opacity: 1;" data-300="opacity: 0">Rensource Magazine</h3>
+        <p data-0="opacity: 1;" data-300="opacity: 0">Check here frequently to stay in the loop of what’s happening at Rensource.</p>
+      </div>
+    </section>
+
+    <div class="Filter">
+      <div class="container">
+        <div class="Filter-Overflow">
+          <div class="Filter-Holder" data-filter-group="medium">
+            <div data-filter=".all" class="Filter-Item active">All Categories</div>
+            <div data-filter=".post" class="Filter-Item">Blogposts</div>
+            <div data-filter=".insta" class="Filter-Item">Instagram</div>
+            <div data-filter=".twitter" class="Filter-Item">Twitter</div>
+            <div data-filter=".fb" class="Filter-Item">Facebook</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="rs-article-box-Holder">
+      <div class="container">
+        <div class="row filter-content">
+          <% feeds.forEach(function(feed) { %>
+            <% if (feed.type === 'instagram') { %>
+              <div class="col-lg-4 col-md-6 col-sm-12 insta all">
+                <a href="<%= feed.link %>" target="_blank" class="rs-article-box rs-article-box--Instagram" style="background-image:url('<%= feed.image %>')">
+                  <img src="/images/instagram.png" alt="" width="24">
+                </a>
+              </div>
+            <% } else if (feed.type === 'twitter') { %>
+              <div class="col-lg-4 col-md-6 col-sm-12 twitter all">
+                <a href="<%= feed.link %>" target="_blank" class="rs-article-box rs-article-box--Twitter" style="background-image:url('images/blog.png')">
+                  <img src="/images/twitter.png" alt="" width="24">
+                  <h5>
+                    <%= feed.text %>
+                    <span>
+                      @rensource
+                    </span>
+                  </h5>
+                </a>
+              </div>
+            <% } else if (feed.type === 'facebook' && feed.text !== ' ...') { %>
+              <div class="col-lg-4 col-md-6 col-sm-12 fb all">
+                <a href="<%= feed.link %>" target="_blank" class="rs-article-box rs-article-box--Facebook" style="background-image:url('images/blog.png')">
+                  <img src="/images/fb.png" alt="" width="24">
+                  <h5>
+                    <%= feed.text %>
+                    <span>
+                      @rensource
+                    </span>
+                  </h5>
+                </a>
+              </div>
+            <% } else if (feed.type === 'magazine') { %>
+              <div class="col-lg-4 col-md-6 col-sm-12 post all">
+                <a href="<%= feed.link %>" class="rs-article-box rs-article-box--Medium" style="background-image:url('images/blog.png')">
+                  <div class="rs-article-box-Info">
+                    <h5>
+                      <%= feed.title %>
+                      <span><%= feed.createdAtFormatted %></span>
+                    </h5>
+                  </div>
+                </a>
+              </div>
+            <% } %>
+           <% }) %>
+        </div>
+      </div>
+    </section>
+    <%- include partials/registration.ejs %>
+    <%- include partials/footer.ejs %>
+  </div>
+
+  <%- include partials/scripts.ejs %>
+</body>
+</html>

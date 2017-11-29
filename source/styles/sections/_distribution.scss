@@ -1,0 +1,126 @@
+.rs-section-distribution {
+  background: white;
+  padding: 6.25rem 0;
+  // padding-top: 0;
+  border-bottom: 1px solid #eee;
+
+  .col-sm-6 > h3,
+  .col-sm-6 > p {
+    animation: fadeInUp 400ms ease;
+  }
+
+  .col-sm-6 > p {
+    opacity: .7;
+  }
+
+  .generators {
+    width: 85%;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+  }
+
+  &.in-viewport img {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .facts {
+    p {
+      font-size: 12px;
+      color: #cdcdcd;
+      margin-left: 34px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      &::before {
+        width: 2px;
+        height: 30px;
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        background: #e7e7e7;
+        margin-right: 30px;
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+
+  .fact {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    transition-duration: 250ms;
+
+    a:link,
+    a:hover,
+    a:target { color: #a4c642; text-decoration: underline; }
+
+    a:hover { text-decoration: none; }
+
+    &-icon {
+      flex: 0 0 72px;
+      height: 72px;
+      border-radius: 50%;
+      line-height: 68px;
+      text-align: center;
+      background: #FFFFFF;
+      border: 2px solid #E7E7E7;
+      box-shadow: 0 15px 15px 0 rgba(0,0,0,0.04);
+      font-size: 1rem;
+      color: #A5C44C;
+      font-weight: 500;
+      margin-right: 20px;
+
+      img { width: 32px; position: relative; top: -2px; }
+    }
+  }
+
+  .facts > * {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  &.in-viewport .facts > p,
+  &.in-viewport .facts > div {
+    animation: fadeInUp 400ms ease;
+    animation-fill-mode: both;
+    opacity: 1;
+  }
+
+  &.in-viewport .facts > *:nth-child(1) { animation-delay: 200ms; }
+  &.in-viewport .facts > *:nth-child(2) { animation-delay: 400ms; }
+  &.in-viewport .facts > *:nth-child(3) { animation-delay: 600ms; }
+  &.in-viewport .facts > *:nth-child(4) { animation-delay: 800ms; }
+  &.in-viewport .facts > *:nth-child(5) { animation-delay: 1000ms; }
+  &.in-viewport .facts > *:nth-child(6) { animation-delay: 1200ms; }
+  &.in-viewport .facts > *:nth-child(7) { animation-delay: 1400ms; }
+  &.in-viewport .facts > *:nth-child(8) { animation-delay: 1600ms; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
