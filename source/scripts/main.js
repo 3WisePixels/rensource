@@ -149,7 +149,7 @@ $(document).ready(() => {
     if (errors.length) {
       $('.error-field-last').html('Some fields are not properly filled.')
     } else {
-      $.ajax(`http://members.rensource.energy/webapi/default/webapi?secret=u&${formString}`)
+      $.ajax(`https://members.rensource.energy/webapi/default/webapi?secret=u&${formString}`)
         .then(
           () => {
             $contactForm.hide();
