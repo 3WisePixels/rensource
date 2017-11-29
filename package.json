@@ -11,7 +11,8 @@
     "start": "node build/scripts/server.js",
     "serve": "concurrently \"gulp\" \"yarn dev:serve\"",
     "deploy": "gulp build && node ./scripts/deploy.js",
-    "dev:serve": "nodemon scripts/server.js --exec babel-node"
+    "dev:serve": "nodemon scripts/server.js --exec babel-node",
+    "heroku-postbuild": "gulp build"
   },
   "keywords": [
     "boilerplate",
