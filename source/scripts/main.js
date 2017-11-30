@@ -158,7 +158,7 @@ $(document).ready(() => {
   $('.registration-resend').on('click', () => {
     let redirectUrl = '/onboarding/verified';
 
-    if (Cookies.get('skipOnboarding');) {
+    if (Cookies.get('skipOnboarding')) {
       redirectUrl = '/onboarding/finish';
     }
 
