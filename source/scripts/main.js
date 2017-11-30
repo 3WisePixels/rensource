@@ -1,29 +1,21 @@
 
 import isMobile from 'ismobilejs';
 import serialize from 'form-serialize';
-import 'whatwg-fetch'
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 $(document).ready(() => {
-  /**
-   * Prevent minus to be appended to age input
-   */
+  const headers = {};
+  const clientKey = Cookies.get('client');
+  const uid = Cookies.get('uid');
+  const token = Cookies.get('token');
 
-  // const age = document.getElementById('age');
-  //
-  //  // Listen for input event on numInput.
-  // age.onkeydown = function onkeydown(e) { // eslint-disable-line
-  //   if (![8, 9, 37, 38, 39, 40].includes(e.keyCode)) {
-  //     if (age.value.length >= 2) {
-  //       return false;
-  //     }
-  //
-  //     if (!((e.keyCode > 95 && e.keyCode < 106)
-  //       || (e.keyCode > 47 && e.keyCode < 58)
-  //       || e.keyCode === 8)) {
-  //       return false;
-  //     }
-  //   }
-  // }
+  if (clientKey && uid && token) {
+    headers['access-token'] = token;
+    headers.uid = uid;
+    headers.client = clientKey;
+  }
+
 
   /**
    * Contact form selector
@@ -90,7 +82,8 @@ $(document).ready(() => {
     if (value === 'Go') {
       $('.registration-submit').html('Get Started');
     } else {
-      $('.registration-submit').html('Join waiting list')
+      // $('.registration-submit').html('Join waiting list')
+      $('.registration-submit').html('Get Started');
     }
   });
 
@@ -107,6 +100,38 @@ $(document).ready(() => {
     arrows: false,
     draggable: false,
     adaptiveHeight: true,
+  });
+
+  $('.registration-resend').on('click', () => {
+    axios({
+      method: 'post',
+      url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding/resend_email_token',
+      headers: {
+        'Content-Type': 'application/json',
+        'access-token': Cookies.get('token'),
+        client: Cookies.get('client'),
+        uid: Cookies.get('uid'),
+      },
+    })
+    .then(function(data) {
+      $('.rs-section-registration-success button').attr('disabled', true);
+      $('.rs-section-registration-success button').html('Email has been resent');
+    }).catch(function(error) {
+      alert('Something went wrong. Please try again later.');
+    })
+  });
+
+  $('.rs-section-registration-slider input, .rs-section-registration-slider select').on('change', () => {
+    const formEl = document.querySelector('.rs-section-registration-form')
+    const form = serialize(formEl, true);
+    const errors = validateLastStep(form);
+    console.log(errors);
+
+    if (errors.length) {
+      return false;
+    } else {
+      $('.registration-submit').attr('disabled', false);
+    }
   });
 
   $contactSlider.on('click', '.registration-submit', (event) => {
@@ -142,32 +167,40 @@ $(document).ready(() => {
       return (false)
     }
 
-    console.log(formArray);
+    let redirectUrl = '/onboarding/verified';
+
+    if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
+      redirectUrl = '/onboarding/finish';
+    }
+
     if (!validateEmail(formArray.email)) {
-      $('.error-field-last').html('Please enter a valid email address.')
+      $('.error-field-last').html('Please enter a valid email address.');
     } else if (formArray.email !== formArray.email_confirmation) {
-      $('.error-field-last').html('It seems like your emails dont match.')
+      $('.error-field-last').html('It seems like your emails dont match.');
     } else if (formArray.password !== formArray.password_confirmation) {
-      $('.error-field-last').html('It seems like your password dont match.')
+      $('.error-field-last').html('It seems like your password dont match.');
     } else if (errors.length) {
-      $('.error-field-last').html('Some fields are not properly filled.')
+      $('.error-field-last').html('Some fields are not properly filled.');
     } else {
-      fetch('http://rensource-api-staging.herokuapp.com/v1/onboarding', {
-        method: 'POST',
+      axios({
+        method: 'post',
+        url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        data: {
           user: formArray,
-        })
+          redirect_url: `http://staging.rs.testgebiet.com${redirectUrl}`,
+        },
       })
       .then(function(data) {
+        Cookies.set('client', data.headers.client);
+        Cookies.set('uid', data.headers.uid);
+        Cookies.set('token', data.headers['access-token']);
+
+        console.log(data);
         $contactForm.hide();
         $contactSuccess.show();
-
-        // setTimeout(() => {
-        //   window.location.replace('http://rs.testgebiet.com/onboarding/verify');
-        // }, 2500);
       }).catch(function(error) {
         alert('Something went wrong. Please try again later.');
       })

@@ -17,7 +17,7 @@
   &-form,
   &-success {
     margin-top: 3.75rem;
-    background: white;
+    background: #f9f9f9;
     position: relative;
     margin-bottom: -11.25rem;
     box-shadow: 0 2px 2rem 0 rgba(0,0,0,0.05);
@@ -83,5 +83,21 @@
 
   &-success {
     text-align: center;
+
+    h2 {
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    img {
+      max-width: 262px;
+      display: block;
+      margin: 0px auto;
+    }
   }
 }

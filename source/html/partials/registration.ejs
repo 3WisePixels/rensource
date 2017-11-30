@@ -6,10 +6,11 @@
     <p class="text-xs-center">Get started on the path towards energy independence by answering a few simple questions.</p>
 
     <div class="rs-section-registration-success" style="display: none;">
-      <img src="/images/icons/icn-mark-big.svg" alt="">
+      <img src="/images/mail.png" alt="">
       <br><br>
-      <h2>Thank you!</h2>
-      <p>You’ve successfully registered and will receive further instructions over email shortly.</p>
+      <h2>Verify your email</h2>
+      <p>We just sent you a confirmation via email. Please click the link on this device to activate your account.</p>
+      <button class="button button-green registration-resend">SEND EMAIL AGAIN</button>
     </div>
     <form class="rs-section-registration-form" autocomplete="off">
       <div class="container">
@@ -57,7 +58,7 @@
                 <br>
               </div>
               <div class="col-md-6 col-sm-12">
-                <input autocomplete="off" type="text" name="referral" placeholder="Referral Code">
+                <input autocomplete="off" type="text" name="referral_token" placeholder="Referral Code">
               </div>
               <div class="col-md-6 col-sm-12">
                 <select name="subscription_tier" id="product_interest">
@@ -75,7 +76,7 @@
                 <span class="error-field-last"></span>
               </div>
               <div class="col-xs-6 text-xs-right">
-                <button class="button button-green registration-submit">Get started</button>
+                <button class="button button-green registration-submit" disabled>Get started</button>
               </div>
             </div>
           </div>
