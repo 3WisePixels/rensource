@@ -156,6 +156,12 @@ $(document).ready(() => {
   });
 
   $('.registration-resend').on('click', () => {
+    let redirectUrl = '/onboarding/verified';
+
+    if (Cookies.get('skipOnboarding');) {
+      redirectUrl = '/onboarding/finish';
+    }
+
     axios({
       method: 'post',
       url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding/resend_email_token',
@@ -164,6 +170,9 @@ $(document).ready(() => {
         'access-token': Cookies.get('token'),
         client: Cookies.get('client'),
         uid: Cookies.get('uid'),
+      },
+      data: {
+        redirect_url: `http://staging.rs.testgebiet.com${redirectUrl}`,
       },
     })
     .then(function(data) {
@@ -223,6 +232,7 @@ $(document).ready(() => {
     let redirectUrl = '/onboarding/verified';
 
     if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
+      Cookies.set('skipOnboarding', true);
       redirectUrl = '/onboarding/finish';
     }
 
