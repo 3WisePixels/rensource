@@ -1,6 +1,7 @@
 
 import isMobile from 'ismobilejs';
 import serialize from 'form-serialize';
+import 'whatwg-fetch'
 
 $(document).ready(() => {
   /**
@@ -141,35 +142,40 @@ $(document).ready(() => {
       return (false)
     }
 
-    if (validateEmail(formArray.email)) {
-      $('.error-field-last').html('Some fields are not properly filled.')
+    console.log(formArray);
+    if (!validateEmail(formArray.email)) {
+      $('.error-field-last').html('Please enter a valid email address.')
     } else if (formArray.email !== formArray.email_confirmation) {
-      $('.error-field-last').html('Some fields are not properly filled.')
+      $('.error-field-last').html('It seems like your emails dont match.')
     } else if (formArray.password !== formArray.password_confirmation) {
-      $('.error-field-last').html('Some fields are not properly filled.')
+      $('.error-field-last').html('It seems like your password dont match.')
     } else if (errors.length) {
       $('.error-field-last').html('Some fields are not properly filled.')
     } else {
-      $.ajax(`http://members.rensource.energy/webapi/default/webapi?secret=u&${formString}`)
-        .then(
-          () => {
-            window.location.replace('http://rs.testgebiet.com/onboarding/verify');
-          },
-          (error) => {
-            let { responseText } = error;
+      fetch('http://rensource-api-staging.herokuapp.com/v1/onboarding', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: formArray,
+        })
+      })
+      .then(function(data) {
+        $contactForm.hide();
+        $contactSuccess.show();
 
-            if (!responseText || responseText !== '') {
-              responseText = 'Something went wrong. Please try again later.'
-            }
-
-            alert(responseText); // eslint-disable-line
-          },
-        );
+        // setTimeout(() => {
+        //   window.location.replace('http://rs.testgebiet.com/onboarding/verify');
+        // }, 2500);
+      }).catch(function(error) {
+        alert('Something went wrong. Please try again later.');
+      })
     }
   });
 
   function validateLastStep(fields) {
-    const requiredFields = ['firstname', 'lastname', 'gender', 'email', 'email_confirmation', 'password', 'password_confirmation', 'product_interest'];
+    const requiredFields = ['first_name', 'last_name', 'gender', 'email', 'email_confirmation', 'password', 'password_confirmation', 'subscription_tier'];
     const err = [];
 
     requiredFields.forEach((field) => {
