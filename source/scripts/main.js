@@ -264,6 +264,15 @@ $(document).ready(() => {
         console.log(data);
         $contactForm.hide();
         $contactSuccess.show();
+
+        const userWidth = $(window).outerWidth();
+
+        if (userWidth < 767) {
+          const formOffset = $('.rs-section-registration-success').offset().top;
+          $('html, body').animate({
+            scrollTop: formOffset - 100
+          }, 800);
+        }
       }).catch(function(error) {
         alert('Something went wrong. Please try again later.');
       })
