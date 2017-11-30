@@ -1,6 +1,6 @@
 .rs-section-registration {
   padding: 4rem 0 6.25rem;
-  background: white;
+  background: #f9f9f9;
 
   @include media-breakpoint-down(lg) {
     padding: 3rem 0 6.25rem;
@@ -17,7 +17,7 @@
   &-form,
   &-success {
     margin-top: 3.75rem;
-    background: #f9f9f9;
+    background: white;
     position: relative;
     margin-bottom: -11.25rem;
     box-shadow: 0 2px 2rem 0 rgba(0,0,0,0.05);
