@@ -25,6 +25,12 @@ Change into your directory and run the following command in the Terminal of your
 
 Additional you have to run `gulp` to compile style & javascript changes.
 
+## Automatic Deploys
+
+Each push to the `master` branch is automatically deploying to [Staging](http://rensource-staging.herokuapp.com/)
+
+Each push to the `production` branch is automatically deploying to [Production](http://rensource.energy/)
+
 ## License
 
 MIT © [Kreativgebiet](http://kreativgebiet.com)
