@@ -36,11 +36,10 @@ $(document).ready(() => {
   });
 
   let customCountryCode = false;
-
   $('[name="first_name"], [name="middle_name"], [name="last_name"]').on('change', (event) => {
     if ($(event.currentTarget).val() && $(event.currentTarget).val().match(/\d+/g)) {
       $(event.currentTarget).css('border-bottom', '1px solid red');
-      $('.error-field-last').html('Your name should not include numbers.');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your name should not include numbers.');
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('.error-field-last').html('');
@@ -58,16 +57,15 @@ $(document).ready(() => {
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="password"]').css('border-bottom', '1px solid red');
-      $('.error-field-last').html('Your passwords must match.');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your passwords must match.');
     }
 
     if ($(event.currentTarget).val().length <= 7) {
-      console.log('password short if');
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="password"]').css('border-bottom', '1px solid red');
-      $('.error-field-last').html('Your password should have at least 8 characters.');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your password should have at least 8 characters.');
     } else if ($(event.currentTarget).val() !== $('[name="password"]').val()) {
-      $('.error-field-last').html('Your passwords must match.');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your passwords must match.');
     }
   });
 
@@ -87,7 +85,7 @@ $(document).ready(() => {
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="email"]').css('border-bottom', '1px solid red');
-      $('.error-field-last').html('Your emails must match.');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your emails must match.');
     }
   });
 
@@ -108,7 +106,7 @@ $(document).ready(() => {
     }
 
     if (!validateEmail($(event.currentTarget).val())) {
-      $('.error-field-last').html('Please enter a valid email.');
+      $('.error-field-last').html('<div class="error-icon">!</div>Please enter a valid email.');
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="email"]').css('border-bottom', '1px solid red');
     } else {
