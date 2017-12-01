@@ -184,9 +184,9 @@ $(document).ready(() => {
   $('.registration-resend').on('click', () => {
     let redirectUrl = '/onboarding/verified';
 
-    if (Cookies.get('skipOnboarding')) {
-      redirectUrl = '/onboarding/finish';
-    }
+    // if (Cookies.get('skipOnboarding')) {
+    //   redirectUrl = '/onboarding/finish';
+    // }
 
     axios({
       method: 'post',
@@ -258,10 +258,10 @@ $(document).ready(() => {
 
     let redirectUrl = '/onboarding/verified';
 
-    if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
-      Cookies.set('skipOnboarding', true);
-      redirectUrl = '/onboarding/finish';
-    }
+    // if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
+    //   Cookies.set('skipOnboarding', true);
+    //   redirectUrl = '/onboarding/finish';
+    // }
 
     if (!validateEmail(formArray.email)) {
       $('.error-field-last').html('Please enter a valid email address.');
