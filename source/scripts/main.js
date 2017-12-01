@@ -205,7 +205,6 @@ $(document).ready(() => {
       $('.rs-section-registration-success button').attr('disabled', true);
       $('.rs-section-registration-success button').html('Email has been resent');
     }).catch(function(error) {
-      console.log(error);
       alert('Something went wrong. Please try again later.');
     })
   });
@@ -214,7 +213,6 @@ $(document).ready(() => {
     const formEl = document.querySelector('.rs-section-registration-form')
     const form = serialize(formEl, true);
     const errors = validateLastStep(form);
-    console.log(errors);
 
     if (errors.length) {
       return false;
@@ -301,7 +299,12 @@ $(document).ready(() => {
           }, 800);
         }
       }).catch(function(error) {
-        alert('Something went wrong. Please try again later.');
+        console.error(error.response.data.error);
+        if (error.response.data.error.length) {
+          alert(error.response.data.error);
+        } else {
+          alert('Something went wrong. Please try again later.');
+        }
       })
     }
   });
