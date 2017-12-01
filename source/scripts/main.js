@@ -40,18 +40,34 @@ $(document).ready(() => {
   $('[name="first_name"], [name="middle_name"], [name="last_name"]').on('change', (event) => {
     if ($(event.currentTarget).val() && $(event.currentTarget).val().match(/\d+/g)) {
       $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('.error-field-last').html('Your name should not include numbers.');
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
     }
   });
 
   $('[name="password_confirmation"]').on('change', (event) => {
+    // $(event.currentTarget).val() === $('[name="password"]').val()
+    // const currentLength = $(event.currentTarget).val().length;
+    // console.log(currentLength);
     if ($(event.currentTarget).val() === $('[name="password"]').val()) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="password"]').css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="password"]').css('border-bottom', '1px solid red');
+      $('.error-field-last').html('Your passwords must match.');
+    }
+
+    if ($(event.currentTarget).val().length <= 7) {
+      console.log('password short if');
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="password"]').css('border-bottom', '1px solid red');
+      $('.error-field-last').html('Your password should have at least 8 characters.');
+    } else if ($(event.currentTarget).val() !== $('[name="password"]').val()) {
+      $('.error-field-last').html('Your passwords must match.');
     }
   });
 
@@ -67,9 +83,11 @@ $(document).ready(() => {
     if (($(event.currentTarget).val() === $('[name="email"]').val()) && validateEmail($(event.currentTarget).val())) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="email"]').css('border-bottom', '1px solid red');
+      $('.error-field-last').html('Your emails must match.');
     }
   });
 
@@ -81,12 +99,22 @@ $(document).ready(() => {
       return (false)
     }
 
-    if (($(event.currentTarget).val() === $('[name="email"]').val()) && validateEmail($(event.currentTarget).val())) {
+    if ($(event.currentTarget).val() === $('[name="email"]').val()) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
     } else {
       $(event.currentTarget).css('border-bottom', '1px solid red');
       $('[name="email"]').css('border-bottom', '1px solid red');
+    }
+
+    if (!validateEmail($(event.currentTarget).val())) {
+      $('.error-field-last').html('Please enter a valid email.');
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="email"]').css('border-bottom', '1px solid red');
+    } else {
+      $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('[name="email"]').css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
     }
   });
 
@@ -179,6 +207,7 @@ $(document).ready(() => {
       $('.rs-section-registration-success button').attr('disabled', true);
       $('.rs-section-registration-success button').html('Email has been resent');
     }).catch(function(error) {
+      console.log(error);
       alert('Something went wrong. Please try again later.');
     })
   });
