@@ -224,6 +224,8 @@ $(document).ready(() => {
   $contactSlider.on('click', '.registration-submit', (event) => {
     event.preventDefault();
 
+    $('.rs-section-registration-form button').attr('disabled', true);
+
     const formEl = document.querySelector('.rs-section-registration-form')
     const form = serialize(formEl, true);
     const errors = validateLastStep(form);
@@ -299,9 +301,8 @@ $(document).ready(() => {
           }, 800);
         }
       }).catch(function(error) {
-        console.error(error.response.data.error);
-        if (error.response.data.error.length) {
-          alert(error.response.data.error);
+        if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
+          $('.error-field-last').html('Email has already been taken.');
         } else {
           alert('Something went wrong. Please try again later.');
         }
