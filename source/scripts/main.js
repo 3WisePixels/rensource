@@ -264,13 +264,13 @@ $(document).ready(() => {
     // }
 
     if (!validateEmail(formArray.email)) {
-      $('.error-field-last').html('Please enter a valid email address.');
+      $('.error-field-last').html('<div class="error-icon">Please enter a valid email address.');
     } else if (formArray.email !== formArray.email_confirmation) {
-      $('.error-field-last').html('It seems like your emails dont match.');
+      $('.error-field-last').html('<div class="error-icon">It seems like your emails dont match.');
     } else if (formArray.password !== formArray.password_confirmation) {
-      $('.error-field-last').html('It seems like your password dont match.');
+      $('.error-field-last').html('<div class="error-icon">It seems like your password dont match.');
     } else if (errors.length) {
-      $('.error-field-last').html('Some fields are not properly filled.');
+      $('.error-field-last').html('<div class="error-icon">Some fields are not properly filled.');
     } else {
       axios({
         method: 'post',
@@ -302,7 +302,7 @@ $(document).ready(() => {
         }
       }).catch(function(error) {
         if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
-          $('.error-field-last').html('Email has already been taken.');
+          $('.error-field-last').html('<div class="error-icon">Email has already been taken.');
         } else {
           alert('Something went wrong. Please try again later.');
         }
