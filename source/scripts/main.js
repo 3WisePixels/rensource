@@ -198,7 +198,7 @@ $(document).ready(() => {
         uid: Cookies.get('uid'),
       },
       data: {
-        redirect_url: `http://rs.testgebiet.com${redirectUrl}`,
+        redirect_url: `http://signup.rensource.energy${redirectUrl}`,
       },
     })
     .then(function(data) {
@@ -289,7 +289,7 @@ $(document).ready(() => {
         },
         data: {
           user: formArray,
-          redirect_url: `http://rs.testgebiet.com${redirectUrl}`,
+          redirect_url: `http://signup.rensource.energy${redirectUrl}`,
         },
       })
       .then(function(data) {
