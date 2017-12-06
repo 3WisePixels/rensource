@@ -190,7 +190,7 @@ $(document).ready(() => {
 
     axios({
       method: 'post',
-      url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding/resend_email_token',
+      url: 'http://rensource-api.herokuapp.com/v1/onboarding/resend_email_token',
       headers: {
         'Content-Type': 'application/json',
         'access-token': Cookies.get('token'),
@@ -283,7 +283,7 @@ $(document).ready(() => {
     } else {
       axios({
         method: 'post',
-        url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding',
+        url: 'http://rensource-api.herokuapp.com/v1/onboarding',
         headers: {
           'Content-Type': 'application/json',
         },
