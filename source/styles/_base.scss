@@ -91,3 +91,22 @@ p {
 .hidden {
   display: none !important;
 }
+
+.error-field-last {
+  color: red;
+  display: flex;
+  align-items: center;
+}
+
+.error-icon {
+  background: #fad4d4;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  line-height: 17px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  flex: 0 0 auto;
+  margin-right: 5px;
+}

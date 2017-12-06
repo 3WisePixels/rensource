@@ -1,28 +1,21 @@
 
 import isMobile from 'ismobilejs';
 import serialize from 'form-serialize';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 $(document).ready(() => {
-  /**
-   * Prevent minus to be appended to age input
-   */
+  const headers = {};
+  const clientKey = Cookies.get('client');
+  const uid = Cookies.get('uid');
+  const token = Cookies.get('token');
 
-  const age = document.getElementById('age');
-
-   // Listen for input event on numInput.
-  age.onkeydown = function onkeydown(e) { // eslint-disable-line
-    if (![8, 9, 37, 38, 39, 40].includes(e.keyCode)) {
-      if (age.value.length >= 2) {
-        return false;
-      }
-
-      if (!((e.keyCode > 95 && e.keyCode < 106)
-        || (e.keyCode > 47 && e.keyCode < 58)
-        || e.keyCode === 8)) {
-        return false;
-      }
-    }
+  if (clientKey && uid && token) {
+    headers['access-token'] = token;
+    headers.uid = uid;
+    headers.client = clientKey;
   }
+
 
   /**
    * Contact form selector
@@ -43,6 +36,85 @@ $(document).ready(() => {
   });
 
   let customCountryCode = false;
+  $('[name="first_name"], [name="middle_name"], [name="last_name"]').on('change', (event) => {
+    if ($(event.currentTarget).val() && $(event.currentTarget).val().match(/\d+/g)) {
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your name should not include numbers.');
+    } else {
+      $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
+    }
+  });
+
+  $('[name="password_confirmation"]').on('change', (event) => {
+    // $(event.currentTarget).val() === $('[name="password"]').val()
+    // const currentLength = $(event.currentTarget).val().length;
+    // console.log(currentLength);
+    if ($(event.currentTarget).val() === $('[name="password"]').val()) {
+      $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('[name="password"]').css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
+    } else {
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="password"]').css('border-bottom', '1px solid red');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your passwords must match.');
+    }
+
+    if ($(event.currentTarget).val().length <= 7) {
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="password"]').css('border-bottom', '1px solid red');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your password should have at least 8 characters.');
+    } else if ($(event.currentTarget).val() !== $('[name="password"]').val()) {
+      $('.error-field-last').html('<div class="error-icon">!</div>Your passwords must match.');
+    }
+  });
+
+  $('[name="email_confirmation"]').on('change', (event) => {
+    function validateEmail(mail) {
+     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
+
+    if (($(event.currentTarget).val() === $('[name="email"]').val()) && validateEmail($(event.currentTarget).val())) {
+      $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('[name="email"]').css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
+    } else {
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="email"]').css('border-bottom', '1px solid red');
+      $('.error-field-last').html('<div class="error-icon">!</div>Your emails must match.');
+    }
+  });
+
+  $('[name="email"]').on('change', (event) => {
+    function validateEmail(mail) {
+     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
+    if ($(event.currentTarget).val() === $('[name="email"]').val()) {
+      $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('[name="email"]').css('border-bottom', '1px solid #eee');
+    } else {
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="email"]').css('border-bottom', '1px solid red');
+    }
+
+    if (!validateEmail($(event.currentTarget).val())) {
+      $('.error-field-last').html('<div class="error-icon">!</div>Please enter a valid email.');
+      $(event.currentTarget).css('border-bottom', '1px solid red');
+      $('[name="email"]').css('border-bottom', '1px solid red');
+    } else {
+      $(event.currentTarget).css('border-bottom', '1px solid #eee');
+      $('[name="email"]').css('border-bottom', '1px solid #eee');
+      $('.error-field-last').html('');
+    }
+  });
 
   $('[name="country_code"]').on('change', (event) => {
     const $target = $(event.currentTarget);
@@ -89,7 +161,8 @@ $(document).ready(() => {
     if (value === 'Go') {
       $('.registration-submit').html('Get Started');
     } else {
-      $('.registration-submit').html('Join waiting list')
+      // $('.registration-submit').html('Join waiting list')
+      $('.registration-submit').html('Get Started');
     }
   });
 
@@ -108,79 +181,146 @@ $(document).ready(() => {
     adaptiveHeight: true,
   });
 
-  $contactSlider.on('click', '.registration-next', (event) => {
-    event.preventDefault();
+  $('.registration-resend').on('click', () => {
+    let redirectUrl = '/onboarding/verified';
 
-    const form = document.querySelector('.rs-section-registration-form')
-    const serialized = serialize(form, true);
+    // if (Cookies.get('skipOnboarding')) {
+    //   redirectUrl = '/onboarding/finish';
+    // }
 
-    const errors = validateFirstStep(serialized);
-
-    if (errors.length) {
-      $('.error-field-first').html('Some fields are not properly filled.')
-    } else {
-      $contactSlider.slick('slickNext');
-    }
+    axios({
+      method: 'post',
+      url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding/resend_email_token',
+      headers: {
+        'Content-Type': 'application/json',
+        'access-token': Cookies.get('token'),
+        client: Cookies.get('client'),
+        uid: Cookies.get('uid'),
+      },
+      data: {
+        redirect_url: `http://staging.rs.testgebiet.com${redirectUrl}`,
+      },
+    })
+    .then(function(data) {
+      $('.rs-section-registration-success button').attr('disabled', true);
+      $('.rs-section-registration-success button').html('Email has been resent');
+    }).catch(function(error) {
+      alert('Something went wrong. Please try again later.');
+    })
   });
 
-  $contactSlider.on('click', '.registration-back', (event) => {
-    event.preventDefault();
-    $contactSlider.slick('slickPrev');
-  });
-
-  $contactSlider.on('click', '.registration-submit', (event) => {
-    event.preventDefault();
-
+  $('.rs-section-registration-slider input, .rs-section-registration-slider select').on('change', () => {
     const formEl = document.querySelector('.rs-section-registration-form')
     const form = serialize(formEl, true);
     const errors = validateLastStep(form);
 
-    if (form.country_code === 'other') {
-      form.country_code = form.custom_country_code[1];
+    if (errors.length) {
+      return false;
+    } else {
+      $('.registration-submit').attr('disabled', false);
     }
+  });
 
-    delete form.custom_country_code;
+  let wrongReferral = false;
+  $contactSlider.on('click', '.registration-submit', (event) => {
+    event.preventDefault();
+
+    $('.rs-section-registration-form button').attr('disabled', true);
+
+    const formEl = document.querySelector('.rs-section-registration-form')
+    const form = serialize(formEl, true);
+    const errors = validateLastStep(form);
 
     const formString = Object.keys(form).map((key) => {
       const escapedValue = form[key].replace(/\+/g, '%2B');
       return `${key}=${escapedValue}`;
     }).join('&');
 
-    if (errors.length) {
-      $('.error-field-last').html('Some fields are not properly filled.')
+    function URLToArray(url) {
+      var request = {};
+      var pairs = url.substring(url.indexOf('?') + 1).split('&');
+      for (var i = 0; i < pairs.length; i++) {
+          if(!pairs[i])
+              continue;
+          var pair = pairs[i].split('=');
+          request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+      }
+      return request;
+    }
+
+    const formArray = URLToArray(formString);
+
+    function validateEmail(mail) {
+     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
+    let redirectUrl = '/onboarding/verified';
+
+    // if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
+    //   Cookies.set('skipOnboarding', true);
+    //   redirectUrl = '/onboarding/finish';
+    // }
+
+    const referralReg = /REN\d+\$/g;
+
+    if (!validateEmail(formArray.email)) {
+      $('.error-field-last').html('<div class="error-icon">!</div>Please enter a valid email address.');
+    } else if (formArray.email !== formArray.email_confirmation) {
+      $('.error-field-last').html('<div class="error-icon">!</div>It seems like your emails dont match.');
+    } else if (formArray.password !== formArray.password_confirmation) {
+      $('.error-field-last').html('<div class="error-icon">!</div>It seems like your password dont match.');
+    } else if (errors.length) {
+      $('.error-field-last').html('<div class="error-icon">!</div>Some fields are not properly filled.');
+    } else if (!referralReg.test($('[name="referral_token"]').val()) && !wrongReferral && $('[name="referral_token"]').val() !== '') {
+      $('.error-field-last').html('<div class="error-icon">!</div>Your referral code is wrong.');
+      $('.rs-section-registration-form button').html('Proceed to questionaire');
+      $('.rs-section-registration-form button').attr('disabled', false);
+      wrongReferral = true;
+      return;
     } else {
-      $.ajax(`https://members.rensource.energy/webapi/default/webapi?secret=u&${formString}`)
-        .then(
-          () => {
-            $contactForm.hide();
-            $contactSuccess.show();
-          },
-          (error) => {
-            let { responseText } = error;
+      axios({
+        method: 'post',
+        url: 'http://rensource-api-staging.herokuapp.com/v1/onboarding',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          user: formArray,
+          redirect_url: `http://staging.rs.testgebiet.com${redirectUrl}`,
+        },
+      })
+      .then(function(data) {
+        Cookies.set('client', data.headers.client);
+        Cookies.set('uid', data.headers.uid);
+        Cookies.set('token', data.headers['access-token']);
 
-            if (!responseText || responseText !== '') {
-              responseText = 'Something went wrong. Please try again later.'
-            }
+        console.log(data);
+        $contactForm.hide();
+        $contactSuccess.show();
 
-            alert(responseText); // eslint-disable-line
-          },
-        );
+        const userWidth = $(window).outerWidth();
+
+        if (userWidth < 767) {
+          const formOffset = $('.rs-section-registration-success').offset().top;
+          $('html, body').animate({
+            scrollTop: formOffset - 100
+          }, 800);
+        }
+      }).catch(function(error) {
+        if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
+          $('.error-field-last').html('<div class="error-icon">!</div>Email has already been taken.');
+        } else {
+          alert('Something went wrong. Please try again later.');
+        }
+      })
     }
   });
 
-  function validateFirstStep(fields) {
-    const requiredFields = ['name', 'surname', 'email', 'age', 'product_interest'];
-    const err = [];
-
-    requiredFields.forEach((field) => {
-      if (!fields.hasOwnProperty(field)) { err.push(field); } // eslint-disable-line
-    });
-
-    return err;
-  }
-
   function validateLastStep(fields) {
-    const requiredFields = ['country_code', 'phone_number', 'city', 'address'];
+    const requiredFields = ['first_name', 'last_name', 'gender', 'email', 'email_confirmation', 'password', 'password_confirmation', 'subscription_tier'];
     const err = [];
 
     requiredFields.forEach((field) => {

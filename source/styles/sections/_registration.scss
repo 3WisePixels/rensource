@@ -1,6 +1,6 @@
 .rs-section-registration {
   padding: 4rem 0 6.25rem;
-  background: white;
+  background: #f9f9f9;
 
   @include media-breakpoint-down(lg) {
     padding: 3rem 0 6.25rem;
@@ -47,6 +47,7 @@
 
     input[type="text"],
     input[type="email"],
+    input[type="password"],
     input[type="number"],
     select {
       background: transparent;
@@ -54,8 +55,7 @@
       font-size: 2em;
       color: #222222;
       letter-spacing: 0;
-      line-height: 3.5rem;
-      padding: 0;
+      padding: 0 0 10px;
       margin: 0;
       width: 100%;
 
@@ -82,5 +82,21 @@
 
   &-success {
     text-align: center;
+
+    h2 {
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    img {
+      max-width: 262px;
+      display: block;
+      margin: 0px auto;
+    }
   }
 }
