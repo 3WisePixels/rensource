@@ -190,7 +190,7 @@ $(document).ready(() => {
 
     axios({
       method: 'post',
-      url: 'https://rensource-api-eu.herokuapp.com/v1/onboarding/resend_email_token',
+      url: /(staging)/.test(window.location.href) ? 'https://rensource-api-staging.herokuapp.com/v1/resend_email_token' : 'https://rensource-api-eu.herokuapp.com/v1/resend_email_token',
       headers: {
         'Content-Type': 'application/json',
         'access-token': Cookies.get('token'),
@@ -283,7 +283,7 @@ $(document).ready(() => {
     } else {
       axios({
         method: 'post',
-        url: 'https://rensource-api-eu.herokuapp.com/v1/onboarding',
+        url: /(staging)/.test(window.location.href) ? 'https://rensource-api-staging.herokuapp.com/v1/onboarding' : 'https://rensource-api-eu.herokuapp.com/v1/onboarding',
         headers: {
           'Content-Type': 'application/json',
         },
