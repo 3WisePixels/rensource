@@ -591,4 +591,14 @@ $(document).ready(() => {
       $interactiveSlider.slick('slickGoTo', index);
     });
   }
-})
+
+  $('#get-started').click((event) => {
+    event.preventDefault();
+    console.log('click');
+    $('.social-login').addClass('social-login--active');
+  });
+
+  $('.social-login__overlay').click(() => {
+    $('.social-login').removeClass('social-login--active');
+  });
+});

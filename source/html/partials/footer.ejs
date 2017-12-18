@@ -93,3 +93,20 @@
     </div>
   </div>
 </footer>
+<div class="social-login">
+  <div class="social-login__overlay"></div>
+  <div class="social-login__box">
+    <h2>LOGIN</h2>
+    <form class="social-login__form" autocomplete="off">
+      <input autocomplete="off" type="email" name="email" placeholder="Email">
+      <input autocomplete="off" type="password" name="password" placeholder="Password">
+      <button class="button button-green registration-submit" disabled>Submit</button>
+    </form>
+    <div class="social-login__line">
+      <span>or</span>
+      <hr>
+    </div>
+    <p><a href="http://rensource-api-staging.herokuapp.com/v1/auth/facebook?auth_origin_url=http://staging.rs.testgebiet.com/onboarding/details" class="button facebook">Login with Facebook</a></p>
+    <p><a href="http://rensource-api-staging.herokuapp.com/v1/auth/google_oauth2?auth_origin_url=http://staging.rs.testgebiet.com/onboarding/details" class="button google">Login with Google</a></p>
+  </div>
+</div>

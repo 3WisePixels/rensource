@@ -3,13 +3,13 @@
   "rules": {
     "no-use-before-define": 0,
     "import/no-extraneous-dependencies": 0,
-    "semi": 0,
+    "semi": 0
   },
   "globals": {
     "$": false,
     "window": false,
     "zenscroll": false,
     "document": false,
-    "skrollr": false,
+    "skrollr": false
   }
 }

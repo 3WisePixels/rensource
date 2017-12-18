@@ -2,6 +2,8 @@
 bower_components/
 node_modules/
 .eyeglass_cache/
+/.idea/
+/dist/
 
 rev-manifest.json
 
