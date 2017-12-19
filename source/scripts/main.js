@@ -600,22 +600,56 @@ $(document).ready(() => {
 
   $('.social-login__form input').on('blur', event => $(event.target).attr('blurred', true));
 
+  let errorMail = null;
+  let errorPw = null;
   $('.social-login__form input').on('keyup', (event) => {
     const $this = $(event.target);
     const type = $this.attr('type');
     const val = $this.val();
+    const errorElement = $('.social-login__error');
+    const errorElementInner = $('.social-login__errorLabel');
+
 
     if (type === 'password') {
-      console.log('testing password');
-
       if (val.length < 8) {
-        $this.attr('data-error', 'Password not long enough');
+        errorPw = 'Your password is too short';
+        $('.social-login .registration-submit').attr('disabled', true);
+      } else {
+        errorPw = '';
+      }
+
+      if (errorPw === '') {
+        errorElement.css('display', 'none');
+        errorElementInner.html('');
+
+        if (errorMail === '') {
+          $('.social-login .registration-submit').attr('disabled', false);
+        }
+      } else {
+        errorElement.css('display', 'flex');
+        errorElementInner.html(errorPw);
       }
     } else if (type === 'email') {
-      console.log('testing email');
+      if (val === '') {
+        errorMail = 'Your email can not be blank';
+        $('.social-login .registration-submit').attr('disabled', true);
+      } else if (!validateEmail(val)) {
+        errorMail = 'Please provide an valid email address';
+        $('.social-login .registration-submit').attr('disabled', true);
+      } else {
+        errorMail = '';
+      }
 
-      if (!validateEmail(val)) {
-        $this.attr('data-error', 'Please enter a valid email');
+      if (errorMail === '') {
+        errorElement.css('display', 'none');
+        errorElementInner.html('');
+
+        if (errorPw === '') {
+          $('.social-login .registration-submit').attr('disabled', false);
+        }
+      } else {
+        errorElement.css('display', 'flex');
+        errorElementInner.html(errorMail);
       }
     }
   });
@@ -633,6 +667,8 @@ $(document).ready(() => {
 
     axios.post(`http://${API_HOST}/v1/onboarding/signup`, assign({}, fields, {
       password_confirmation: fields.password,
-    }));
+    })).then((res) => {
+      console.log(res);
+    });
   })
 });
