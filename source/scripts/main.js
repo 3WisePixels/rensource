@@ -667,8 +667,13 @@ $(document).ready(() => {
 
     axios.post(`http://${API_HOST}/v1/onboarding/signup`, assign({}, fields, {
       password_confirmation: fields.password,
-    })).then((res) => {
-      console.log(res);
+    })).then((data) => {
+      Cookies.set('client', data.headers.client);
+      Cookies.set('uid', data.headers.uid);
+      Cookies.set('token', data.headers['access-token']);
+
+
+      window.location.href = `http://${CLIENT_HOST}/onboarding/details?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
     });
   })
 });
