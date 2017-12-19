@@ -1,8 +1,20 @@
 
 import isMobile from 'ismobilejs';
 import serialize from 'form-serialize';
+import assign from 'lodash/assign';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+
+import validateEmail from './lib/validateEmail';
+
+const __STAGING__ = /(staging|localhost)/.test(window.location.href); // eslint-disable-line
+window.__STAGING__ = __STAGING__; // eslint-disable-line
+
+const API_HOST = `rensource-api-${__STAGING__ ? 'staging' : 'eu'}.herokuapp.com`;
+window.API_HOST = API_HOST;
+
+const CLIENT_HOST = __STAGING__ ? 'staging.rs.testgebiet.com' : 'signup.rensource.energy';
+window.CLIENT_HOST = CLIENT_HOST;
 
 $(document).ready(() => {
   const headers = {};
@@ -70,14 +82,6 @@ $(document).ready(() => {
   });
 
   $('[name="email_confirmation"]').on('change', (event) => {
-    function validateEmail(mail) {
-     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
-        return (true)
-      }
-      return (false)
-    }
-
-
     if (($(event.currentTarget).val() === $('[name="email"]').val()) && validateEmail($(event.currentTarget).val())) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
@@ -90,13 +94,6 @@ $(document).ready(() => {
   });
 
   $('[name="email"]').on('change', (event) => {
-    function validateEmail(mail) {
-     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
-        return (true)
-      }
-      return (false)
-    }
-
     if ($(event.currentTarget).val() === $('[name="email"]').val()) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
@@ -182,7 +179,7 @@ $(document).ready(() => {
   });
 
   $('.registration-resend').on('click', () => {
-    let redirectUrl = '/onboarding/verified';
+    const redirectUrl = '/onboarding/verified';
 
     // if (Cookies.get('skipOnboarding')) {
     //   redirectUrl = '/onboarding/finish';
@@ -190,7 +187,7 @@ $(document).ready(() => {
 
     axios({
       method: 'post',
-      url: /(staging)/.test(window.location.href) ? 'https://rensource-api-staging.herokuapp.com/v1/resend_email_token' : 'https://rensource-api-eu.herokuapp.com/v1/resend_email_token',
+      url: `https://${API_HOST}/v1/resend_email_token`,
       headers: {
         'Content-Type': 'application/json',
         'access-token': Cookies.get('token'),
@@ -198,15 +195,15 @@ $(document).ready(() => {
         uid: Cookies.get('uid'),
       },
       data: {
-        redirect_url: `http://signup.rensource.energy${redirectUrl}`,
+        redirect_url: `http://${CLIENT_HOST}${redirectUrl}`,
       },
     })
-    .then(function(data) {
-      $('.rs-section-registration-success button').attr('disabled', true);
-      $('.rs-section-registration-success button').html('Email has been resent');
-    }).catch(function(error) {
-      alert('Something went wrong. Please try again later.');
-    })
+      .then((data) => {
+        $('.rs-section-registration-success button').attr('disabled', true);
+        $('.rs-section-registration-success button').html('Email has been resent');
+      }).catch((error) => {
+        alert('Something went wrong. Please try again later.');
+      })
   });
 
   $('.rs-section-registration-slider input, .rs-section-registration-slider select').on('change', () => {
@@ -214,11 +211,11 @@ $(document).ready(() => {
     const form = serialize(formEl, true);
     const errors = validateLastStep(form);
 
-    if (errors.length) {
-      return false;
-    } else {
-      $('.registration-submit').attr('disabled', false);
-    }
+    if (errors.length) return false;
+
+    $('.registration-submit').attr('disabled', false);
+
+    return true;
   });
 
   let wrongReferral = false;
@@ -237,33 +234,18 @@ $(document).ready(() => {
     }).join('&');
 
     function URLToArray(url) {
-      var request = {};
-      var pairs = url.substring(url.indexOf('?') + 1).split('&');
-      for (var i = 0; i < pairs.length; i++) {
-          if(!pairs[i])
-              continue;
-          var pair = pairs[i].split('=');
-          request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+      const request = {};
+      const pairs = url.substring(url.indexOf('?') + 1).split('&');
+      for (let i = 0; i < pairs.length; i++) {
+        if (!pairs[i]) { continue; }
+        const pair = pairs[i].split('=');
+        request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
       }
       return request;
     }
 
     const formArray = URLToArray(formString);
-
-    function validateEmail(mail) {
-     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
-        return (true)
-      }
-      return (false)
-    }
-
-    let redirectUrl = '/onboarding/verified';
-
-    // if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
-    //   Cookies.set('skipOnboarding', true);
-    //   redirectUrl = '/onboarding/finish';
-    // }
-
+    const redirectUrl = '/onboarding/verified';
     const referralReg = /REN\d+\$/g;
 
     if (!validateEmail(formArray.email)) {
@@ -279,43 +261,42 @@ $(document).ready(() => {
       $('.rs-section-registration-form button').html('Proceed to questionaire');
       $('.rs-section-registration-form button').attr('disabled', false);
       wrongReferral = true;
-      return;
     } else {
       axios({
         method: 'post',
-        url: /(staging)/.test(window.location.href) ? 'https://rensource-api-staging.herokuapp.com/v1/onboarding' : 'https://rensource-api-eu.herokuapp.com/v1/onboarding',
+        url: `https://${API_HOST}/v1/onboarding`,
         headers: {
           'Content-Type': 'application/json',
         },
         data: {
           user: formArray,
-          redirect_url: `http://signup.rensource.energy${redirectUrl}`,
+          redirect_url: `http://${CLIENT_HOST}${redirectUrl}`,
         },
       })
-      .then(function(data) {
-        Cookies.set('client', data.headers.client);
-        Cookies.set('uid', data.headers.uid);
-        Cookies.set('token', data.headers['access-token']);
+        .then((data) => {
+          Cookies.set('client', data.headers.client);
+          Cookies.set('uid', data.headers.uid);
+          Cookies.set('token', data.headers['access-token']);
 
-        console.log(data);
-        $contactForm.hide();
-        $contactSuccess.show();
+          console.log(data);
+          $contactForm.hide();
+          $contactSuccess.show();
 
-        const userWidth = $(window).outerWidth();
+          const userWidth = $(window).outerWidth();
 
-        if (userWidth < 767) {
-          const formOffset = $('.rs-section-registration-success').offset().top;
-          $('html, body').animate({
-            scrollTop: formOffset - 100
-          }, 800);
-        }
-      }).catch(function(error) {
-        if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
-          $('.error-field-last').html('<div class="error-icon">!</div>Email has already been taken.');
-        } else {
-          alert('Something went wrong. Please try again later.');
-        }
-      })
+          if (userWidth < 767) {
+            const formOffset = $('.rs-section-registration-success').offset().top;
+            $('html, body').animate({
+              scrollTop: formOffset - 100,
+            }, 800);
+          }
+        }).catch((error) => {
+          if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
+            $('.error-field-last').html('<div class="error-icon">!</div>Email has already been taken.');
+          } else {
+            alert('Something went wrong. Please try again later.'); // eslint-disable-line
+          }
+        })
     }
   });
 
@@ -594,11 +575,64 @@ $(document).ready(() => {
 
   $('#get-started').click((event) => {
     event.preventDefault();
-    console.log('click');
     $('.social-login').addClass('social-login--active');
+    $('.social-login').find('a.button').each((i, el) => {
+      const $el = $(el);
+      const href = $el.attr('href');
+
+      $el.attr('href', href.replace('API_HOST', API_HOST).replace('CLIENT_HOST', CLIENT_HOST));
+    });
   });
+
+
+  // ---------------------------------------------------------------------------
+  // REGISTRATION POPUP
+  // ---------------------------------------------------------------------------
+
+  const fields
+  = {
+
+  };
 
   $('.social-login__overlay').click(() => {
     $('.social-login').removeClass('social-login--active');
   });
+
+  $('.social-login__form input').on('blur', event => $(event.target).attr('blurred', true));
+
+  $('.social-login__form input').on('keyup', (event) => {
+    const $this = $(event.target);
+    const type = $this.attr('type');
+    const val = $this.val();
+
+    if (type === 'password') {
+      console.log('testing password');
+
+      if (val.length < 8) {
+        $this.attr('data-error', 'Password not long enough');
+      }
+    } else if (type === 'email') {
+      console.log('testing email');
+
+      if (!validateEmail(val)) {
+        $this.attr('data-error', 'Please enter a valid email');
+      }
+    }
+  });
+
+  $('.social-login__form').on('submit', (event) => {
+    event.preventDefault();
+
+    console.log('submitted form');
+
+    const fields = {};
+    const $form = $(event.target);
+    $form.serializeArray().forEach(({ name, value }) => {
+      fields[name] = value;
+    });
+
+    axios.post(`http://${API_HOST}/v1/onboarding/signup`, assign({}, fields, {
+      password_confirmation: fields.password,
+    }));
+  })
 });
