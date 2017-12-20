@@ -93,11 +93,16 @@
     </div>
   </div>
 </footer>
+
 <div class="social-login">
   <div class="social-login__overlay"></div>
   <div class="social-login__box">
-    <h2>LOGIN</h2>
+    <h2>SIGNUP</h2>
     <form class="social-login__form" autocomplete="off">
+      <div class="social-login__error" style="display: none">
+        <div class="social-login__errorIcon">!</div>
+        <div class="social-login__errorLabel"></div>
+      </div>
       <input autocomplete="off" type="email" name="email" placeholder="Email">
       <input autocomplete="off" type="password" name="password" placeholder="Password">
       <button class="button button-green registration-submit" disabled>Submit</button>
@@ -106,7 +111,7 @@
       <span>or</span>
       <hr>
     </div>
-    <p><a href="http://rensource-api-staging.herokuapp.com/v1/auth/facebook?auth_origin_url=http://staging.rs.testgebiet.com/onboarding/details" class="button facebook">Login with Facebook</a></p>
-    <p><a href="http://rensource-api-staging.herokuapp.com/v1/auth/google_oauth2?auth_origin_url=http://staging.rs.testgebiet.com/onboarding/details" class="button google">Login with Google</a></p>
+    <p><a href="http://API_HOST/v1/auth/facebook?auth_origin_url=http://CLIENT_HOST/onboarding/details" class="button facebook">Signup with Facebook</a></p>
+    <p><a href="http://API_HOST/v1/auth/google_oauth2?auth_origin_url=http://CLIENT_HOST/onboarding/details" class="button google">Signup with Google</a></p>
   </div>
 </div>
