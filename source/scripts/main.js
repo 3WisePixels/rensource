@@ -602,6 +602,7 @@ $(document).ready(() => {
 
   let errorMail = null;
   let errorPw = null;
+
   $('.social-login__form input').on('focusout', (event) => {
     const $this = $(event.target);
     const type = $this.attr('type');
@@ -609,27 +610,7 @@ $(document).ready(() => {
     const errorElement = $('.social-login__error');
     const errorElementInner = $('.social-login__errorLabel');
 
-
-    if (type === 'password') {
-      if (val.length < 8) {
-        errorPw = 'Your password is too short';
-        $('.social-login .registration-submit').attr('disabled', true);
-      } else {
-        errorPw = '';
-      }
-
-      if (errorPw === '') {
-        errorElement.css('display', 'none');
-        errorElementInner.html('');
-
-        if (errorMail === '') {
-          $('.social-login .registration-submit').attr('disabled', false);
-        }
-      } else {
-        errorElement.css('display', 'flex');
-        errorElementInner.html(errorPw);
-      }
-    } else if (type === 'email') {
+    if (type === 'email') {
       if (val === '') {
         errorMail = 'Your email can not be blank';
         $('.social-login .registration-submit').attr('disabled', true);
@@ -650,6 +631,33 @@ $(document).ready(() => {
       } else {
         errorElement.css('display', 'flex');
         errorElementInner.html(errorMail);
+      }
+    }
+  });
+
+  $('.social-login__form input').on('keyup', (event) => {
+    const $this = $(event.target);
+    const type = $this.attr('type');
+    const val = $this.val();
+    const errorElement = $('.social-login__error');
+    const errorElementInner = $('.social-login__errorLabel');
+
+
+    if (type === 'password') {
+      if (val.length < 8) {
+        errorPw = null;
+        $('.social-login .registration-submit').attr('disabled', true);
+      } else {
+        errorPw = '';
+      }
+
+      if (errorPw === '') {
+        errorElement.css('display', 'none');
+        errorElementInner.html('');
+
+        if (errorMail === '') {
+          $('.social-login .registration-submit').attr('disabled', false);
+        }
       }
     }
   });
