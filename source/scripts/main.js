@@ -602,7 +602,7 @@ $(document).ready(() => {
 
   let errorMail = null;
   let errorPw = null;
-  $('.social-login__form input').on('keyup', (event) => {
+  $('.social-login__form input').on('focusout', (event) => {
     const $this = $(event.target);
     const type = $this.attr('type');
     const val = $this.val();
