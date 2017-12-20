@@ -664,8 +664,8 @@ $(document).ready(() => {
 
   $('.social-login__form').on('submit', (event) => {
     event.preventDefault();
-
-    console.log('submitted form');
+    const errorElement = $('.social-login__error');
+    const errorElementInner = $('.social-login__errorLabel');
 
     const fields = {};
     const $form = $(event.target);
@@ -680,8 +680,12 @@ $(document).ready(() => {
       Cookies.set('uid', data.headers.uid);
       Cookies.set('token', data.headers['access-token']);
 
-
       window.location.href = `http://${CLIENT_HOST}/onboarding/details?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
+
+    }).catch((err) => {
+      errorElementInner.html(`Email ${err.response.data.errors.email[0]}`);
+      errorElement.css('display', 'flex');
     });
-  })
+  });
+
 });
