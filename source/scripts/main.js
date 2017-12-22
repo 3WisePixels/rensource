@@ -93,7 +93,7 @@ $(document).ready(() => {
     }
   });
 
-  $('[name="email"]').on('change', (event) => {
+  $('.rs-section-registration-slider [name="email"]').on('change', (event) => {
     if ($(event.currentTarget).val() === $('[name="email"]').val()) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
@@ -466,6 +466,21 @@ $(document).ready(() => {
     appendDots: $('.rs-section-stories .dots-container .container'),
   })
 
+  const loginSwiper = $('.social-login__box').slick({
+    dots: false,
+    fade: true,
+    infinite: false,
+    arrows: false,
+  })
+
+  $('.goToLogin').on('click', () => {
+    loginSwiper.slick('slickNext');
+  })
+
+  $('.goToRegister').on('click', () => {
+    loginSwiper.slick('slickPrev');
+  })
+
   $('a:not([href^="http"], [href^="#"], [href^="mailto"])').on('click', function linkClick(event) {
     event.preventDefault();
 
@@ -598,74 +613,134 @@ $(document).ready(() => {
     $('.social-login').removeClass('social-login--active');
   });
 
-  $('.social-login__form input').on('blur', event => $(event.target).attr('blurred', true));
+  $('.social-login__form--signup input').on('blur', event => $(event.target).attr('blurred', true));
+  $('.social-login__form--login input').on('blur', event => $(event.target).attr('blurred', true));
 
-  let errorMail = null;
-  let errorPw = null;
+  let errorMailLogin = null;
+  let errorPwLogin = null;
+  let errorMailRegister = null;
+  let errorPwRegister = null;
 
-  $('.social-login__form input').on('focusout', (event) => {
+  $('.social-login--signup .social-login__form input').on('focusout', (event) => {
     const $this = $(event.target);
     const type = $this.attr('type');
     const val = $this.val();
-    const errorElement = $('.social-login__error');
-    const errorElementInner = $('.social-login__errorLabel');
+    const errorElement = $('.social-login--signup .social-login__error');
+    const errorElementInner = $('.social-login--signup .social-login__errorLabel');
 
     if (type === 'email') {
       if (val === '') {
-        errorMail = 'Your email can not be blank';
+        errorMailRegister = 'Your email can not be blank';
         $('.social-login .registration-submit').attr('disabled', true);
       } else if (!validateEmail(val)) {
-        errorMail = 'Please provide an valid email address';
+        errorMailRegister = 'Please provide an valid email address';
         $('.social-login .registration-submit').attr('disabled', true);
       } else {
-        errorMail = '';
+        errorMailRegister = '';
       }
 
-      if (errorMail === '') {
+      if (errorMailRegister === '') {
         errorElement.css('display', 'none');
         errorElementInner.html('');
 
-        if (errorPw === '') {
+        if (errorPwRegister === '') {
           $('.social-login .registration-submit').attr('disabled', false);
         }
       } else {
         errorElement.css('display', 'flex');
-        errorElementInner.html(errorMail);
+        errorElementInner.html(errorMailRegister);
       }
     }
   });
-
-  $('.social-login__form input').on('keyup', (event) => {
+  $('.social-login--signup .social-login__form input').on('keyup', (event) => {
     const $this = $(event.target);
     const type = $this.attr('type');
     const val = $this.val();
-    const errorElement = $('.social-login__error');
-    const errorElementInner = $('.social-login__errorLabel');
+    const errorElement = $('.social-login--signup .social-login__error');
+    const errorElementInner = $('.social-login--signup .social-login__errorLabel');
 
 
     if (type === 'password') {
       if (val.length < 8) {
-        errorPw = null;
+        errorPwRegister = null;
         $('.social-login .registration-submit').attr('disabled', true);
       } else {
-        errorPw = '';
+        errorPwRegister = '';
       }
 
-      if (errorPw === '') {
+      if (errorPwRegister === '') {
         errorElement.css('display', 'none');
         errorElementInner.html('');
 
-        if (errorMail === '') {
+        if (errorMailRegister === '') {
           $('.social-login .registration-submit').attr('disabled', false);
         }
       }
     }
   });
+  $('.social-login--login .social-login__form input').on('focusout', (event) => {
+    const $this = $(event.target);
+    const type = $this.attr('type');
+    const val = $this.val();
+    const errorElement = $('.social-login--login .social-login__error');
+    const errorElementInner = $('.social-login--login .social-login__errorLabel');
 
-  $('.social-login__form').on('submit', (event) => {
+    if (type === 'email') {
+      if (val === '') {
+        errorMailLogin = 'Your email can not be blank';
+        $('.social-login .login-submit').attr('disabled', true);
+      } else if (!validateEmail(val)) {
+        errorMailLogin = 'Please provide an valid email address';
+        $('.social-login .login-submit').attr('disabled', true);
+      } else {
+        errorMailLogin = '';
+      }
+
+      if (errorMailLogin === '') {
+        errorElement.css('display', 'none');
+        errorElementInner.html('');
+
+        if (errorPwLogin === '') {
+          $('.social-login .login-submit').attr('disabled', false);
+        }
+      } else {
+        errorElement.css('display', 'flex');
+        errorElementInner.html(errorMailLogin);
+      }
+    }
+  });
+  $('.social-login--login .social-login__form input').on('keyup', (event) => {
+    const $this = $(event.target);
+    const type = $this.attr('type');
+    const val = $this.val();
+    const errorElement = $('.social-login--login .social-login__error');
+    const errorElementInner = $('.social-login--login .social-login__errorLabel');
+
+
+    if (type === 'password') {
+      if (val.length < 8) {
+        errorPwLogin = null;
+        $('.social-login .login-submit').attr('disabled', true);
+      } else {
+        errorPwLogin = '';
+      }
+
+      if (errorPwLogin === '') {
+        errorElement.css('display', 'none');
+        errorElementInner.html('');
+
+        if (errorMailLogin === '') {
+          $('.social-login .login-submit').attr('disabled', false);
+        }
+      }
+    }
+  });
+
+
+  $('.social-login--signup .social-login__form').on('submit', (event) => {
     event.preventDefault();
-    const errorElement = $('.social-login__error');
-    const errorElementInner = $('.social-login__errorLabel');
+    const errorElement = $('.social-login--signup .social-login__error');
+    const errorElementInner = $('.social-login--signup .social-login__errorLabel');
 
     const fields = {};
     const $form = $(event.target);
@@ -684,6 +759,32 @@ $(document).ready(() => {
 
     }).catch((err) => {
       errorElementInner.html(`Email ${err.response.data.errors.email[0]}`);
+      errorElement.css('display', 'flex');
+    });
+  });
+  $('.social-login--login .social-login__form').on('submit', (event) => {
+    event.preventDefault();
+    const errorElement = $('.social-login--login .social-login__error');
+    const errorElementInner = $('.social-login--login .social-login__errorLabel');
+
+    const fields = {};
+    const $form = $(event.target);
+    $form.serializeArray().forEach(({ name, value }) => {
+      fields[name] = value;
+    });
+
+    axios.post(`http://${API_HOST}/v1/auth/sign_in`, assign({}, fields, {
+      password_confirmation: fields.password,
+    })).then((data) => {
+      Cookies.set('client', data.headers.client);
+      Cookies.set('uid', data.headers.uid);
+      Cookies.set('token', data.headers['access-token']);
+
+      window.location.href = `http://${CLIENT_HOST}/dashboard?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
+
+    }).catch((err) => {
+      console.log(err.response);
+      errorElementInner.html(err.response.data.errors[0]);
       errorElement.css('display', 'flex');
     });
   });
