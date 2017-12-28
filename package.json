@@ -9,7 +9,7 @@
     "test": "gulp test",
     "build-server": "babel scripts/{**/,}*.js --out-dir build",
     "start": "node build/scripts/server.js",
-    "serve": "concurrently \"gulp\" \"yarn dev:serve\"",
+    "serve": "concurrently \"gulp\" \"yarn start\"",
     "deploy": "gulp build && node ./scripts/deploy.js",
     "dev:serve": "nodemon scripts/server.js --exec babel-node",
     "heroku-postbuild": "gulp build"
