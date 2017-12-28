@@ -474,11 +474,11 @@ $(document).ready(() => {
   })
 
   $('.goToLogin').on('click', () => {
-    loginSwiper.slick('slickNext');
+    loginSwiper.slick('slickPrev');
   })
 
   $('.goToRegister').on('click', () => {
-    loginSwiper.slick('slickPrev');
+    loginSwiper.slick('slickNext');
   })
 
   $('a:not([href^="http"], [href^="#"], [href^="mailto"])').on('click', function linkClick(event) {

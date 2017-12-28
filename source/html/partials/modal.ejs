@@ -1,40 +1,12 @@
 <div class="social-login">
   <div class="social-login__overlay"></div>
   <div class="social-login__box">
-    <div class="social-login--signup">
-      <h2>SIGNUP</h2>
-      <form class="social-login__form social-login__form--signup" autocomplete="off">
-        <div class="social-login__error" style="display: none">
-          <div class="social-login__errorIcon">!</div>
-          <div class="social-login__errorLabel"></div>
-        </div>
-        <input autocomplete="off" type="email" name="email" placeholder="Email">
-        <div style="position: relative">
-          <input autocomplete="off" type="password" name="password" placeholder="Password">
-          <div class="social-login__info">
-            <div class="social-login__info__content">
-              minimum 8 characters
-            </div>
-            ?
-          </div>
-        </div>
-        <button class="button button-green registration-submit" disabled>Submit</button>
-      </form>
-      <div class="social-login__line">
-        <span>or</span>
-        <hr>
-      </div>
-      <p><a href="http://API_HOST/v1/auth/facebook?auth_origin_url=http://CLIENT_HOST/dashboard" class="button facebook">Signup with Facebook</a></p>
-      <p><a href="http://API_HOST/v1/auth/google_oauth2?auth_origin_url=http://CLIENT_HOST/dashboard" class="button google">Signup with Google</a></p>
-      <br>
-      <div class="social-login__line">
-        <span>or</span>
-        <hr>
-      </div>
-      <button class="button button-green goToLogin">Login</button>
-    </div>
     <div class="social-login--login">
-      <h2>LOGIN</h2>
+      <div class="social-login__control">
+        <button class="goToLogin active">Login</button>
+        <button class="goToRegister">Sign up</button>
+      </div>
+
       <form class="social-login__form social-login__form--login" autocomplete="off">
         <div class="social-login__error" style="display: none">
           <div class="social-login__errorIcon">!</div>
@@ -50,20 +22,75 @@
             ?
           </div>
         </div>
-        <button class="button button-green login-submit" disabled>Login</button>
+        <button class="button button-green login-submit" disabled>Login now</button>
       </form>
       <div class="social-login__line">
         <span>or</span>
         <hr>
       </div>
-      <p><a href="http://API_HOST/v1/auth/facebook?auth_origin_url=http://CLIENT_HOST/dashboard-success" class="button facebook">Login with Facebook</a></p>
-      <p><a href="http://API_HOST/v1/auth/google_oauth2?auth_origin_url=http://CLIENT_HOST/dashboard-success" class="button google">Login with Google</a></p>
-      <br>
+      <span style="display: block; height: 10px; width: 100%;"></span>
+      <p>
+        <a href="http://API_HOST/v1/auth/facebook?auth_origin_url=http://CLIENT_HOST/dashboard-success" class="button button--prefixed facebook">
+          <span class="button__prefix">
+            <i class="fab fa-facebook"></i>
+          </span>
+          Login with Facebook
+        </a>
+        <span style="display: block; height: 10px; width: 100%;"></span>
+        <a href="http://API_HOST/v1/auth/google_oauth2?auth_origin_url=http://CLIENT_HOST/dashboard-success" class="button button--prefixed google">
+          <span class="button__prefix">
+            <i class="fab fa-google"></i>
+          </span>
+          Login with Google
+        </a>
+      </p>
+    </div>
+
+    <!--  -->
+
+    <div class="social-login--signup">
+      <div class="social-login__control">
+        <button class="goToLogin">Login</button>
+        <button class="goToRegister active">Sign up</button>
+      </div>
+
+      <form class="social-login__form social-login__form--signup" autocomplete="off">
+        <div class="social-login__error" style="display: none">
+          <div class="social-login__errorIcon">!</div>
+          <div class="social-login__errorLabel"></div>
+        </div>
+        <input autocomplete="off" type="email" name="email" placeholder="Email">
+        <div style="position: relative">
+          <input autocomplete="off" type="password" name="password" placeholder="Password">
+          <div class="social-login__info">
+            <div class="social-login__info__content">
+              minimum 8 characters
+            </div>
+            ?
+          </div>
+        </div>
+        <button class="button button-green registration-submit" disabled>Sign up now</button>
+      </form>
       <div class="social-login__line">
         <span>or</span>
         <hr>
       </div>
-      <button class="button button-green goToRegister">Signup</button>
+      <span style="display: block; height: 10px; width: 100%;"></span>
+      <p>
+        <a href="http://API_HOST/v1/auth/facebook?auth_origin_url=http://CLIENT_HOST/dashboard" class="button button--prefixed facebook">
+          <span class="button__prefix">
+            <i class="fab fa-facebook"></i>
+          </span>
+          Sign up with Facebook
+        </a>
+        <span style="display: block; height: 10px; width: 100%;"></span>
+        <a href="http://API_HOST/v1/auth/google_oauth2?auth_origin_url=http://CLIENT_HOST/dashboard" class="button button--prefixed google">
+          <span class="button__prefix">
+            <i class="fab fa-google"></i>
+          </span>
+          Sign up with Google
+        </a>
+      </p>
     </div>
   </div>
 </div>

@@ -94,4 +94,25 @@
     display: block;
     width: 100%;
   }
+
+  &--prefixed {
+    padding-left: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__prefix {
+    position: absolute;
+    width: 50px;
+    font-size: 16px;
+    background-color: rgba(black, .1);
+    left: 0;
+    top: 0;
+    padding-left: 4px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
