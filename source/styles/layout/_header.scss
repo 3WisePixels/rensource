@@ -145,7 +145,7 @@
     display: inline-block;
     position: relative;
     line-height: 1.5rem;
-    padding: .5rem 0;
+    padding: .25rem 0;
     perspective: 1500;
     -webkit-perspective: 1500;
     transform: translateZ(0px);
@@ -180,7 +180,7 @@
 
   &-nav > li > span,
   &-nav > li > a:not(.button) {
-    margin: 0 1rem;
+    margin: 0 .75rem;
 
     @include media-breakpoint-down(md) {
       margin: 0 .5rem;
