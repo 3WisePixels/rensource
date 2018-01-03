@@ -122,6 +122,7 @@
 <div class="social-login social-login--password">
   <div class="social-login__overlay"></div>
   <div class="social-login__box">
+    <h3 style="font-size: 1.5rem; margin-top: 20px; margin-bottom: 20px;">Enter new password</h3>
     <form class="social-login__form social-login__form--password" autocomplete="off">
       <div style="position: relative">
         <input autocomplete="off" type="password" name="password" placeholder="Password">
@@ -133,9 +134,10 @@
         </div>
       </div>
       <div style="position: relative">
-        <input autocomplete="off" type="password" name="password" placeholder="Password confirmation">
+        <input autocomplete="off" type="password" name="password" placeholder="Password confirmation" class="social-login--password--conf">
       </div>
-      <button class="button button-green login-submit" disabled>Send reset email</button>
+      <button class="button button-green reset-submit" disabled>Reset password</button>
+      <button class="button button-green reset-success" style="display: none">Login</button>
     </form>
   </div>
 </div>

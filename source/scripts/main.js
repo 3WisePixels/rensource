@@ -19,7 +19,7 @@ window.CLIENT_HOST = CLIENT_HOST;
 const SELF_HOST = __STAGING__ ? 'rensource-staging.herokuapp.com' : 'rensource.energy';
 window.SELF_HOST = SELF_HOST;
 
-$(document).on('load', () => {
+$(document).on('ready', () => {
   const headers = {};
   const clientKey = Cookies.get('client');
   const uid = Cookies.get('uid');
@@ -30,7 +30,7 @@ $(document).on('load', () => {
     headers.uid = uid;
     headers.client = clientKey;
   }
-  
+
   const query = {};
 
   window.location.search
@@ -48,6 +48,11 @@ $(document).on('load', () => {
   if (query.reset_password) {
     console.log('showing password modal now');
     $('.social-login--password').addClass('social-login--active');
+
+    console.log(query);
+    Cookies.set('client', query.client_id);
+    Cookies.set('uid', decodeURIComponent(query.uid));
+    Cookies.set('token', query.token);
   }
 
 
@@ -855,4 +860,56 @@ $(document).on('load', () => {
       errorElement.css('display', 'flex');
     });
   });
+});
+
+let newPw = '';
+let newPwConf = ' ';
+
+$('.social-login--password input[name="password"]').on('focusout', (event) => { newPw = $(event.currentTarget).val() });
+
+$('.social-login--password--conf').on('keyup', (event) => {
+  newPwConf = $(event.currentTarget).val();
+  console.log(newPw, newPwConf);
+
+  if ((newPw === newPwConf) && (newPw.length >= 8)) {
+    $('.social-login--password .reset-submit').attr('disabled', false);
+  } else {
+    $('.social-login--password .reset-submit').attr('disabled', true);
+  }
+});
+
+$('.social-login__form--password').on('submit', (event) => {
+  event.preventDefault();
+
+  axios({
+    method: 'put',
+    url: `https://${API_HOST}/v1/auth/password`,
+    headers: {
+      'Content-Type': 'application/json',
+      'access-token': Cookies.get('token'),
+      client: Cookies.get('client'),
+      uid: Cookies.get('uid'),
+    },
+    data: {
+      password: newPw,
+      password_confirmation: newPwConf,
+    },
+  })
+    .then((data) => {
+      console.log(data);
+
+      $('.social-login--password .reset-submit').attr('disabled', true);
+      $('.social-login--password .reset-submit').html('Password has been reset!');
+      $('.reset-success').css('display', 'block');
+    }).catch((error) => {
+      console.log(error.response.data);
+    })
+});
+
+$('.reset-success').on('click', () => {
+  $('.social-login--password').removeClass('social-login--active');
+
+  setTimeout(() => {
+    $('#get-started').click();
+  }, 50);
 });
