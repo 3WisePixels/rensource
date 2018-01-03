@@ -1,4 +1,4 @@
-<div class="social-login">
+<div class="social-login social-login--auth">
   <div class="social-login__overlay"></div>
   <div class="social-login__box">
     <div class="social-login--login">
@@ -23,6 +23,7 @@
           </div>
         </div>
         <button class="button button-green login-submit" disabled>Login now</button>
+        <a href="#" data-launch-password style="outline:none;margin-top:5px;font-size:11px;color:#555;text-align:center;display:block;">Forgot password?</a>
       </form>
       <div class="social-login__line">
         <span>or</span>
@@ -92,5 +93,49 @@
         </a>
       </p>
     </div>
+  </div>
+</div>
+
+<div class="social-login social-login--email">
+  <div class="social-login__overlay"></div>
+  <div class="social-login__box">
+    <div>
+      <h3 style="font-size: 1.5rem; margin-top: 20px; margin-bottom: 20px;">Enter your email</h3>
+      <div class="social-login__error" style="display: none">
+        <div class="social-login__errorIcon">!</div>
+        <div class="social-login__errorLabel"></div>
+      </div>
+      <form class="social-login__form social-login__form--email" style="padding: 0;" autocomplete="off">
+        <input autocomplete="off" type="email" name="email" placeholder="Email address">
+        <button id="reset-submit" class="button button-green reset-submit" disabled>Send reset email</button>
+      </form>
+    </div>
+
+    <div style="padding-top: 50px; padding-bottom: 50px;">
+      <img src="images/icons/icn-mark-big.svg" style="margin: 0 auto 50px;" alt="">
+      <h3 class="centered">Check your inbox</h3>
+      <p style="text-align: center; margin-bottom: 0;">We just sent an email to you to verify your identify.</p>
+    </div>
+  </div>
+</div>
+
+<div class="social-login social-login--password">
+  <div class="social-login__overlay"></div>
+  <div class="social-login__box">
+    <form class="social-login__form social-login__form--password" autocomplete="off">
+      <div style="position: relative">
+        <input autocomplete="off" type="password" name="password" placeholder="Password">
+        <div class="social-login__info">
+          <div class="social-login__info__content">
+            minimum 8 characters
+          </div>
+          ?
+        </div>
+      </div>
+      <div style="position: relative">
+        <input autocomplete="off" type="password" name="password" placeholder="Password confirmation">
+      </div>
+      <button class="button button-green login-submit" disabled>Send reset email</button>
+    </form>
   </div>
 </div>

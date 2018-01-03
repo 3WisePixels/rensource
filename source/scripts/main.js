@@ -16,7 +16,10 @@ window.API_HOST = API_HOST;
 const CLIENT_HOST = __STAGING__ ? 'staging.rs.testgebiet.com' : 'signup.rensource.energy';
 window.CLIENT_HOST = CLIENT_HOST;
 
-$(document).ready(() => {
+const SELF_HOST = __STAGING__ ? 'rensource-staging.herokuapp.com' : 'rensource.energy';
+window.SELF_HOST = SELF_HOST;
+
+$(document).on('load', () => {
   const headers = {};
   const clientKey = Cookies.get('client');
   const uid = Cookies.get('uid');
@@ -26,6 +29,25 @@ $(document).ready(() => {
     headers['access-token'] = token;
     headers.uid = uid;
     headers.client = clientKey;
+  }
+  
+  const query = {};
+
+  window.location.search
+    .substr(1)
+    .split('&')
+    .map(q => q.split('='))
+    .forEach(([key, value]) => {
+      try {
+        query[key] = JSON.parse(value);
+      } catch (e) {
+        query[key] = value;
+      }
+    });
+
+  if (query.reset_password) {
+    console.log('showing password modal now');
+    $('.social-login--password').addClass('social-login--active');
   }
 
 
@@ -466,12 +488,12 @@ $(document).ready(() => {
     appendDots: $('.rs-section-stories .dots-container .container'),
   })
 
-  const loginSwiper = $('.social-login__box').slick({
+  const loginSwiper = $('.social-login--auth .social-login__box').slick({
     dots: false,
     fade: true,
     infinite: false,
     arrows: false,
-  })
+  });
 
   $('.goToLogin').on('click', () => {
     loginSwiper.slick('slickPrev');
@@ -590,8 +612,8 @@ $(document).ready(() => {
 
   $('#get-started').click((event) => {
     event.preventDefault();
-    $('.social-login').addClass('social-login--active');
-    $('.social-login').find('a.button').each((i, el) => {
+    $('.social-login--auth').addClass('social-login--active');
+    $('.social-login--auth').find('a.button').each((i, el) => {
       const $el = $(el);
       const href = $el.attr('href');
 
@@ -604,13 +626,10 @@ $(document).ready(() => {
   // REGISTRATION POPUP
   // ---------------------------------------------------------------------------
 
-  const fields
-  = {
-
-  };
+  const fields = {}; // eslint-disable-line
 
   $('.social-login__overlay').click(() => {
-    $('.social-login').removeClass('social-login--active');
+    $('.social-login--auth').removeClass('social-login--active');
   });
 
   $('.social-login__form--signup input').on('blur', event => $(event.target).attr('blurred', true));
@@ -756,12 +775,12 @@ $(document).ready(() => {
       Cookies.set('token', data.headers['access-token']);
 
       window.location.href = `http://${CLIENT_HOST}/dashboard?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
-
     }).catch((err) => {
       errorElementInner.html(`Email ${err.response.data.errors.email[0]}`);
       errorElement.css('display', 'flex');
     });
   });
+
   $('.social-login--login .social-login__form').on('submit', (event) => {
     event.preventDefault();
     const errorElement = $('.social-login--login .social-login__error');
@@ -781,12 +800,59 @@ $(document).ready(() => {
       Cookies.set('token', data.headers['access-token']);
 
       window.location.href = `http://${CLIENT_HOST}/dashboard-success?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
-
     }).catch((err) => {
-      console.log(err.response);
       errorElementInner.html(err.response.data.errors[0]);
       errorElement.css('display', 'flex');
     });
   });
 
+  /**
+   * Social Login Forgotten Password
+   */
+
+  const resetSwiper = $('.social-login--email .social-login__box').slick({
+    dots: false,
+    fade: true,
+    infinite: false,
+    arrows: false,
+    draggable: false,
+    touchMove: false,
+    swipe: false,
+    swipeToSlide: false,
+  });
+
+  $('[data-launch-password]').on('click', () => {
+    $('.social-login--auth').removeClass('social-login--active');
+    $('.social-login--email').addClass('social-login--active');
+  });
+
+  $('.social-login--email .social-login__form input').on('keyup', (event) => {
+    const { value } = event.currentTarget;
+    $('#reset-submit').attr('disabled', !(value !== '' && validateEmail(value)));
+  });
+
+  $('.social-login--email .social-login__form').on('submit', (event) => {
+    event.preventDefault();
+    const errorElement = $('.social-login--email .social-login__error');
+    const errorElementInner = $('.social-login--email .social-login__errorLabel');
+
+    $('#reset-submit').attr('disabled', true);
+
+    const fields = {};
+    const $form = $(event.target);
+    $form.serializeArray().forEach(({ name, value }) => {
+      fields[name] = value;
+    });
+
+    axios.post(`http://${API_HOST}/v1/auth/password`, assign({}, fields, {
+      redirect_url: `http://${SELF_HOST}/`,
+    })).then((data) => {
+      $('#reset-submit').attr('disabled', false);
+      resetSwiper.slick('slickNext');
+    }).catch((err) => {
+      $('#reset-submit').attr('disabled', false);
+      errorElementInner.html(err.response.data.errors[0]);
+      errorElement.css('display', 'flex');
+    });
+  });
 });
