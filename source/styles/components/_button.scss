@@ -102,6 +102,12 @@
 
     &--full {
       padding: .75rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      white-space: nowrap;
+      text-align: center;
+      justify-content: center;
+      width: 100%;
     }
   }
 
@@ -122,7 +128,7 @@
     &--full {
       position: relative;
       background: transparent;
-      width: 100%;
+      // width: 100%;
       padding: 0;
     }
   }
