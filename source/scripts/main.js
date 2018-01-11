@@ -45,6 +45,16 @@ $(document).on('ready', () => {
       }
     });
 
+    if ('login' in query) {
+      $('.social-login--auth').addClass('social-login--active');
+      $('.social-login--auth').find('a.button').each((i, el) => {
+        const $el = $(el);
+        const href = $el.attr('href');
+
+        $el.attr('href', href.replace('API_HOST', API_HOST).replace('CLIENT_HOST', CLIENT_HOST));
+      });
+    }
+
   if (query.reset_password) {
     console.log('showing password modal now');
     $('.social-login--password').addClass('social-login--active');
