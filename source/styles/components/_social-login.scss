@@ -152,6 +152,15 @@
         color: 'red';
       }
     }
+
+    &__line {
+      height: 2px;
+      width: 0;
+      position: absolute;
+      bottom: 9px;
+      left: 0;
+      transition-duration: 300ms;
+    }
   }
 
   &__line {

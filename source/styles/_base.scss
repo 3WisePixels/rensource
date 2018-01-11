@@ -110,3 +110,16 @@ p {
   flex: 0 0 auto;
   margin-right: 5px;
 }
+
+.rs-passwordStrength {
+  position: relative;
+
+  &Line {
+    height: 2px;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition-duration: 300ms;
+  }
+}

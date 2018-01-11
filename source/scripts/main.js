@@ -779,7 +779,7 @@ $(document).on('ready', () => {
       Cookies.set('uid', data.headers.uid);
       Cookies.set('token', data.headers['access-token']);
 
-      window.location.href = `http://${CLIENT_HOST}/dashboard?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
+      window.location.href = `http://${CLIENT_HOST}/dashboard/initial?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
     }).catch((err) => {
       errorElementInner.html(`Email ${err.response.data.errors.email[0]}`);
       errorElement.css('display', 'flex');
@@ -804,7 +804,7 @@ $(document).on('ready', () => {
       Cookies.set('uid', data.headers.uid);
       Cookies.set('token', data.headers['access-token']);
 
-      window.location.href = `http://${CLIENT_HOST}/dashboard-success?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
+      window.location.href = `http://${CLIENT_HOST}/dashboard/overview?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
     }).catch((err) => {
       errorElementInner.html(err.response.data.errors[0]);
       errorElement.css('display', 'flex');
@@ -912,4 +912,72 @@ $('.reset-success').on('click', () => {
   setTimeout(() => {
     $('#get-started').click();
   }, 50);
+});
+
+
+function scorePassword(pass) {
+    var score = 0;
+    if (!pass)
+        return score;
+
+    // award every unique letter until 5 repetitions
+    var letters = new Object();
+    for (var i=0; i<pass.length; i++) {
+        letters[pass[i]] = (letters[pass[i]] || 0) + 1;
+        score += 5.0 / letters[pass[i]];
+    }
+
+    // bonus points for mixing it up
+    var variations = {
+        digits: /\d/.test(pass),
+        lower: /[a-z]/.test(pass),
+        upper: /[A-Z]/.test(pass),
+        nonWords: /\W/.test(pass),
+    }
+
+    var variationCount = 0;
+    for (var check in variations) {
+        variationCount += (variations[check] == true) ? 1 : 0;
+    }
+    score += (variationCount - 1) * 10;
+
+    return parseInt(score);
+}
+
+function checkPassStrength(pass) {
+    var score = scorePassword(pass);
+    if (score > 80)
+      return "#1ed761";
+    if (score > 60)
+      return "#ffce46";
+    if (score >= 0)
+      return "#dd5044";
+
+    return "";
+}
+
+$(document).ready(function() {
+  $('.rs-passwordStrength input').on('keypress keyup keydown', function() {
+    var pass = $(this).val();
+    let score = scorePassword(pass);
+    const color = checkPassStrength(pass);
+
+    if (score > 100) {
+      score = 100;
+    }
+
+    $('.rs-passwordStrengthLine').css({ backgroundColor: color, width: `${score}%` });
+  });
+
+  $('.social-login__form--signup input[type="password"]').on('keypress keyup keydown', function() {
+    var pass = $(this).val();
+    let score = scorePassword(pass);
+    const color = checkPassStrength(pass);
+
+    if (score > 100) {
+      score = 100;
+    }
+
+    $('.social-login__form__line').css({ backgroundColor: color, width: `${score}%` });
+  });
 });
