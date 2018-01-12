@@ -807,7 +807,7 @@ $(document).on('ready', () => {
       fields[name] = value;
     });
 
-    axios.post(`http://${API_HOST}/v1/auth/sign_in`, assign({}, fields, {
+    axios.post(`https://${API_HOST}/v1/auth/sign_in`, assign({}, fields, {
       password_confirmation: fields.password,
     })).then((data) => {
       Cookies.set('client', data.headers.client);
@@ -859,7 +859,7 @@ $(document).on('ready', () => {
       fields[name] = value;
     });
 
-    axios.post(`http://${API_HOST}/v1/auth/password`, assign({}, fields, {
+    axios.post(`https://${API_HOST}/v1/auth/password`, assign({}, fields, {
       redirect_url: `http://${SELF_HOST}/`,
     })).then((data) => {
       $('#reset-submit').attr('disabled', false);
