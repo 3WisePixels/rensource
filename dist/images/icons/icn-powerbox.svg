@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="24px" viewBox="0 0 23 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>icn-powerbox</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rensource_Technology_V1a" transform="translate(-976.000000, -3085.000000)" fill="#A5C44C">
+            <g id="Group-12" transform="translate(0.000000, 2854.000000)">
+                <g id="icn-powerbox" transform="translate(976.000000, 231.000000)">
+                    <path d="M2,0 L21,0 L23,1 L23,22 L22,24 L1,24 L0,22 L0,1 L2,0 Z M15,2 L21,2 L21,3 L15,3 L15,2 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

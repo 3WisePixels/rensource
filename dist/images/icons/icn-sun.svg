@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/icn-sun</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rensource_Landing_V1a" transform="translate(-952.000000, -879.000000)" fill="#CBCBCB">
+            <g id="Group-6" transform="translate(920.000000, 620.000000)">
+                <g id="Group-2" transform="translate(32.000000, 249.000000)">
+                    <g id="Group" transform="translate(0.000000, 10.000000)">
+                        <path d="M10,13 C8.346,13 7,11.654 7,10 C7,8.346 8.346,7 10,7 C11.654,7 13,8.346 13,10 C13,11.654 11.654,13 10,13 M10,5 C7.243,5 5,7.243 5,10 C5,12.757 7.243,15 10,15 C12.757,15 15,12.757 15,10 C15,7.243 12.757,5 10,5 Z M11,0 L9,0 L9,3 L11,3 L11,0 Z M17.7793,3.6357 L16.3653,2.2217 L14.2423,4.3437 L15.6563,5.7577 L17.7793,3.6357 Z M17,11 L20,11 L20,9 L17,9 L17,11 Z M14.2422,15.6562 L16.3652,17.7782 L17.7792,16.3642 L15.6562,14.2422 L14.2422,15.6562 Z M9,20 L11,20 L11,17 L9,17 L9,20 Z M2.2227,16.3643 L3.6367,17.7783 L5.7577,15.6563 L4.3437,14.2423 L2.2227,16.3643 Z M3,9 L0,9 L0,11 L3,11 L3,9 Z M5.7578,4.3437 L3.6368,2.2217 L2.2228,3.6357 L4.3438,5.7577 L5.7578,4.3437 Z" id="icons/icn-sun"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
