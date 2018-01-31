@@ -190,7 +190,7 @@ $(document).ready(() => {
 
     axios({
       method: 'post',
-      url: 'http://rensource-api.herokuapp.com/v1/onboarding/resend_email_token',
+      url: 'https://rensource-api.herokuapp.com/v1/onboarding/resend_email_token',
       headers: {
         'Content-Type': 'application/json',
         'access-token': Cookies.get('token'),
@@ -198,7 +198,7 @@ $(document).ready(() => {
         uid: Cookies.get('uid'),
       },
       data: {
-        redirect_url: `http://staging.rs.testgebiet.com${redirectUrl}`,
+        redirect_url: `http://signup.rensource.energy${redirectUrl}`,
       },
     })
     .then(function(data) {
@@ -283,13 +283,13 @@ $(document).ready(() => {
     } else {
       axios({
         method: 'post',
-        url: 'http://rensource-api.herokuapp.com/v1/onboarding',
+        url: 'https://rensource-api.herokuapp.com/v1/onboarding',
         headers: {
           'Content-Type': 'application/json',
         },
         data: {
           user: formArray,
-          redirect_url: `http://staging.rs.testgebiet.com${redirectUrl}`,
+          redirect_url: `http://signup.rensource.energy${redirectUrl}`,
         },
       })
       .then(function(data) {
