@@ -11,7 +11,7 @@
   @include media-breakpoint-down(sm) {
     background: white;
     height: 4rem;
-    padding: 1.5rem 1rem;
+    padding: 0 1rem;
     border-bottom: 1px solid rgba(black, .1);
 
     .container, .row, [class^='col'] { position: static !important; }

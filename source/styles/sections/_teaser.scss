@@ -8,6 +8,11 @@
   background-position: bottom center;
   color: #222222;
 
+  &__header-container {
+    display: flex;
+    height: 100%;
+  }
+
   @include media-breakpoint-down(md) {
     height: 58rem;
   }
