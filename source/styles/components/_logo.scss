@@ -1,9 +1,9 @@
 .logo {
-  @include image-2x('../images/logo', 'png', 149px, 17px);
+  @include image-2x('../images/logo', 'png', 175px, 33px);
   background-repeat: no-repeat;
   background-position: center;
-  width: 150px;
-  height: 28px;
+  width: 175px;
+  height: 33px;
   // display: inline-block;
   display: block;
 
@@ -14,14 +14,14 @@
   .rs-header--sticky &,
   .rs-section-teaser--night &,
   .rs-section-interactive--night & {
-    @include image-2x('../images/rb-logo-inverse', 'png', 150px, 28px);
+    @include image-2x('../images/rb-logo-inverse', 'png', 175px, 33px);
   }
 
   @include media-breakpoint-down(sm) {
     .rs-header--sticky &,
     .rs-section-teaser--night &,
     .rs-section-interactive--night & {
-      @include image-2x('../images/rb-logo', 'png', 150px, 28px);
+      @include image-2x('../images/rb-logo', 'png', 175px, 33px);
     }
   }
 }

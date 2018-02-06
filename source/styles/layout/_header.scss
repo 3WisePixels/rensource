@@ -19,7 +19,7 @@
 
   @include media-breakpoint-up(md) {
     &--sticky {
-      padding: 0;
+      padding: 0.25rem 0;
       background: rgba(darken(#073553, 0%), .9);
       color: white;
     }
@@ -31,7 +31,7 @@
     right: 0;
     bottom: -1px;
     width: 4rem;
-    background: #fcc04e;
+    background: #FCC04E;
     appearance: none;
     border: 0;
     outline: none;
