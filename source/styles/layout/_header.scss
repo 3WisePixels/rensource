@@ -20,7 +20,7 @@
   @include media-breakpoint-up(md) {
     &--sticky {
       padding: 0;
-      background: rgba(black, .8);
+      background: rgba(darken(#073553, 0%), .9);
       color: white;
     }
   }

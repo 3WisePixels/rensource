@@ -5193,7 +5193,7 @@ p {
   @media (min-width: 768px) {
     .rs-header--sticky {
       padding: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(7, 53, 83, 0.9);
       color: white; } }
   .rs-header-collapser {
     position: absolute;
@@ -5385,7 +5385,7 @@ p {
     pointer-events: initial; }
 
 .rs-footer {
-  background: #080b1a;
+  background: #073553;
   padding-top: 10rem;
   padding-bottom: 4rem;
   font-weight: 300;
@@ -6334,7 +6334,7 @@ p {
 
 .rs-section-battery {
   padding: 3.5rem 0;
-  background: #080b1a;
+  background: #073553;
   color: white;
   position: relative; }
   @media (max-width: 991px) {
@@ -7275,7 +7275,7 @@ p {
     pointer-events: all;
     transition: opacity 300ms ease; }
   .social-login__overlay {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(7, 53, 83, 0.8);
     position: fixed;
     z-index: 2000;
     top: 0;
