@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="20px" viewBox="0 0 24 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/icn-phone</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rensource_Landing_V1a" transform="translate(-1091.000000, -2026.000000)" fill="#A5C44C">
+            <g id="Group-10-Copy-2" transform="translate(930.000000, 1997.000000)">
+                <g id="Group-31" transform="translate(135.000000, 0.000000)">
+                    <g id="Group" transform="translate(26.000000, 29.000000)">
+                        <path d="M0,10 C0,10.685 0.07,11.354 0.202,12 L4,12 L4,8 L0.202,8 C0.07,8.646 0,9.315 0,10 Z M0.8408,6 L3.9998,6 L3.9998,2.019 C2.6328,3.049 1.5358,4.415 0.8408,6 Z M4,17.981 L4,14 L0.841,14 C1.536,15.585 2.633,16.951 4,17.981 Z M6,12 L10,12 L10,8 L6,8 L6,12 Z M6,19.1592 C7.226,19.6972 8.578,20.0002 10,20.0002 L10,14.0002 L6,14.0002 L6,19.1592 Z M6,6 L10,6 L10,0 C8.578,0 7.226,0.303 6,0.841 L6,6 Z M22,0 L14,0 C12.897,0 12,0.897 12,2 L12,18 C12,19.103 12.897,20 14,20 L22,20 C23.103,20 24,19.103 24,18 L24,2 C24,0.897 23.103,0 22,0 Z M22,16 L14,16 L14,2 L22,2 L22,16 Z" id="icons/icn-phone"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

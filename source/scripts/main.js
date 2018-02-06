@@ -1,25 +1,10 @@
 
 import isMobile from 'ismobilejs';
 import serialize from 'form-serialize';
-import assign from 'lodash/assign';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-import validateEmail from './lib/validateEmail';
-
-const __STAGING__ = /(staging|localhost)/.test(window.location.href); // eslint-disable-line
-window.__STAGING__ = __STAGING__; // eslint-disable-line
-
-const API_HOST = `rensource-api-${__STAGING__ ? 'staging' : 'eu'}.herokuapp.com`;
-window.API_HOST = API_HOST;
-
-const CLIENT_HOST = __STAGING__ ? 'staging.rs.testgebiet.com' : 'signup.rensource.energy';
-window.CLIENT_HOST = CLIENT_HOST;
-
-const SELF_HOST = __STAGING__ ? 'rensource-staging.herokuapp.com' : 'rensource.energy';
-window.SELF_HOST = SELF_HOST;
-
-$(document).on('ready', () => {
+$(document).ready(() => {
   const headers = {};
   const clientKey = Cookies.get('client');
   const uid = Cookies.get('uid');
@@ -29,40 +14,6 @@ $(document).on('ready', () => {
     headers['access-token'] = token;
     headers.uid = uid;
     headers.client = clientKey;
-  }
-
-  const query = {};
-
-  window.location.search
-    .substr(1)
-    .split('&')
-    .map(q => q.split('='))
-    .forEach(([key, value]) => {
-      try {
-        query[key] = JSON.parse(value);
-      } catch (e) {
-        query[key] = value;
-      }
-    });
-
-    if ('login' in query) {
-      $('.social-login--auth').addClass('social-login--active');
-      $('.social-login--auth').find('a.button').each((i, el) => {
-        const $el = $(el);
-        const href = $el.attr('href');
-
-        $el.attr('href', href.replace('API_HOST', API_HOST).replace('CLIENT_HOST', CLIENT_HOST));
-      });
-    }
-
-  if (query.reset_password) {
-    console.log('showing password modal now');
-    $('.social-login--password').addClass('social-login--active');
-
-    console.log(query);
-    Cookies.set('client', query.client_id);
-    Cookies.set('uid', decodeURIComponent(query.uid));
-    Cookies.set('token', query.token);
   }
 
 
@@ -119,6 +70,14 @@ $(document).on('ready', () => {
   });
 
   $('[name="email_confirmation"]').on('change', (event) => {
+    function validateEmail(mail) {
+     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
+
     if (($(event.currentTarget).val() === $('[name="email"]').val()) && validateEmail($(event.currentTarget).val())) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
@@ -130,7 +89,14 @@ $(document).on('ready', () => {
     }
   });
 
-  $('.rs-section-registration-slider [name="email"]').on('change', (event) => {
+  $('[name="email"]').on('change', (event) => {
+    function validateEmail(mail) {
+     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
     if ($(event.currentTarget).val() === $('[name="email"]').val()) {
       $(event.currentTarget).css('border-bottom', '1px solid #eee');
       $('[name="email"]').css('border-bottom', '1px solid #eee');
@@ -216,7 +182,7 @@ $(document).on('ready', () => {
   });
 
   $('.registration-resend').on('click', () => {
-    const redirectUrl = '/onboarding/verified';
+    let redirectUrl = '/onboarding/verified';
 
     // if (Cookies.get('skipOnboarding')) {
     //   redirectUrl = '/onboarding/finish';
@@ -224,7 +190,7 @@ $(document).on('ready', () => {
 
     axios({
       method: 'post',
-      url: `https://${API_HOST}/v1/resend_email_token`,
+      url: 'https://rensource-api-eu.herokuapp.com/v1/onboarding/resend_email_token',
       headers: {
         'Content-Type': 'application/json',
         'access-token': Cookies.get('token'),
@@ -232,15 +198,15 @@ $(document).on('ready', () => {
         uid: Cookies.get('uid'),
       },
       data: {
-        redirect_url: `http://${CLIENT_HOST}${redirectUrl}`,
+        redirect_url: `http://signup.rensource.energy${redirectUrl}`,
       },
     })
-      .then((data) => {
-        $('.rs-section-registration-success button').attr('disabled', true);
-        $('.rs-section-registration-success button').html('Email has been resent');
-      }).catch((error) => {
-        alert('Something went wrong. Please try again later.');
-      })
+    .then(function(data) {
+      $('.rs-section-registration-success button').attr('disabled', true);
+      $('.rs-section-registration-success button').html('Email has been resent');
+    }).catch(function(error) {
+      alert('Something went wrong. Please try again later.');
+    })
   });
 
   $('.rs-section-registration-slider input, .rs-section-registration-slider select').on('change', () => {
@@ -248,11 +214,11 @@ $(document).on('ready', () => {
     const form = serialize(formEl, true);
     const errors = validateLastStep(form);
 
-    if (errors.length) return false;
-
-    $('.registration-submit').attr('disabled', false);
-
-    return true;
+    if (errors.length) {
+      return false;
+    } else {
+      $('.registration-submit').attr('disabled', false);
+    }
   });
 
   let wrongReferral = false;
@@ -271,18 +237,33 @@ $(document).on('ready', () => {
     }).join('&');
 
     function URLToArray(url) {
-      const request = {};
-      const pairs = url.substring(url.indexOf('?') + 1).split('&');
-      for (let i = 0; i < pairs.length; i++) {
-        if (!pairs[i]) { continue; }
-        const pair = pairs[i].split('=');
-        request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+      var request = {};
+      var pairs = url.substring(url.indexOf('?') + 1).split('&');
+      for (var i = 0; i < pairs.length; i++) {
+          if(!pairs[i])
+              continue;
+          var pair = pairs[i].split('=');
+          request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
       }
       return request;
     }
 
     const formArray = URLToArray(formString);
-    const redirectUrl = '/onboarding/verified';
+
+    function validateEmail(mail) {
+     if (/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(mail)) {
+        return (true)
+      }
+      return (false)
+    }
+
+    let redirectUrl = '/onboarding/verified';
+
+    // if (typeof formArray.referral_token !== 'undefined' && formArray.referral_token) {
+    //   Cookies.set('skipOnboarding', true);
+    //   redirectUrl = '/onboarding/finish';
+    // }
+
     const referralReg = /REN\d+\$/g;
 
     if (!validateEmail(formArray.email)) {
@@ -298,42 +279,43 @@ $(document).on('ready', () => {
       $('.rs-section-registration-form button').html('Proceed to questionaire');
       $('.rs-section-registration-form button').attr('disabled', false);
       wrongReferral = true;
+      return;
     } else {
       axios({
         method: 'post',
-        url: `https://${API_HOST}/v1/onboarding`,
+        url: 'https://rensource-api-eu.herokuapp.com/v1/onboarding',
         headers: {
           'Content-Type': 'application/json',
         },
         data: {
           user: formArray,
-          redirect_url: `http://${CLIENT_HOST}${redirectUrl}`,
+          redirect_url: `http://signup.rensource.energy${redirectUrl}`,
         },
       })
-        .then((data) => {
-          Cookies.set('client', data.headers.client);
-          Cookies.set('uid', data.headers.uid);
-          Cookies.set('token', data.headers['access-token']);
+      .then(function(data) {
+        Cookies.set('client', data.headers.client);
+        Cookies.set('uid', data.headers.uid);
+        Cookies.set('token', data.headers['access-token']);
 
-          console.log(data);
-          $contactForm.hide();
-          $contactSuccess.show();
+        console.log(data);
+        $contactForm.hide();
+        $contactSuccess.show();
 
-          const userWidth = $(window).outerWidth();
+        const userWidth = $(window).outerWidth();
 
-          if (userWidth < 767) {
-            const formOffset = $('.rs-section-registration-success').offset().top;
-            $('html, body').animate({
-              scrollTop: formOffset - 100,
-            }, 800);
-          }
-        }).catch((error) => {
-          if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
-            $('.error-field-last').html('<div class="error-icon">!</div>Email has already been taken.');
-          } else {
-            alert('Something went wrong. Please try again later.'); // eslint-disable-line
-          }
-        })
+        if (userWidth < 767) {
+          const formOffset = $('.rs-section-registration-success').offset().top;
+          $('html, body').animate({
+            scrollTop: formOffset - 100
+          }, 800);
+        }
+      }).catch(function(error) {
+        if (/\bEmail has already been taken\b/i.test(error.response.data.error)) {
+          $('.error-field-last').html('<div class="error-icon">!</div>Email has already been taken.');
+        } else {
+          alert('Something went wrong. Please try again later.');
+        }
+      })
     }
   });
 
@@ -503,21 +485,6 @@ $(document).on('ready', () => {
     appendDots: $('.rs-section-stories .dots-container .container'),
   })
 
-  const loginSwiper = $('.social-login--auth .social-login__box').slick({
-    dots: false,
-    fade: true,
-    infinite: false,
-    arrows: false,
-  });
-
-  $('.goToLogin').on('click', () => {
-    loginSwiper.slick('slickPrev');
-  })
-
-  $('.goToRegister').on('click', () => {
-    loginSwiper.slick('slickNext');
-  })
-
   $('a:not([href^="http"], [href^="#"], [href^="mailto"])').on('click', function linkClick(event) {
     event.preventDefault();
 
@@ -624,370 +591,4 @@ $(document).on('ready', () => {
       $interactiveSlider.slick('slickGoTo', index);
     });
   }
-
-  $('#get-started').click((event) => {
-    event.preventDefault();
-    $('.social-login--auth').addClass('social-login--active');
-    $('.social-login--auth').find('a.button').each((i, el) => {
-      const $el = $(el);
-      const href = $el.attr('href');
-
-      $el.attr('href', href.replace('API_HOST', API_HOST).replace('CLIENT_HOST', CLIENT_HOST));
-    });
-  });
-
-
-  // ---------------------------------------------------------------------------
-  // REGISTRATION POPUP
-  // ---------------------------------------------------------------------------
-
-  const fields = {}; // eslint-disable-line
-
-  $('.social-login__overlay').click(() => {
-    $('.social-login--auth').removeClass('social-login--active');
-  });
-
-  $('.social-login__form--signup input').on('blur', event => $(event.target).attr('blurred', true));
-  $('.social-login__form--login input').on('blur', event => $(event.target).attr('blurred', true));
-
-  let errorMailLogin = null;
-  let errorPwLogin = null;
-  let errorMailRegister = null;
-  let errorPwRegister = null;
-
-  $('.social-login--signup .social-login__form input').on('focusout', (event) => {
-    const $this = $(event.target);
-    const type = $this.attr('type');
-    const val = $this.val();
-    const errorElement = $('.social-login--signup .social-login__error');
-    const errorElementInner = $('.social-login--signup .social-login__errorLabel');
-
-    if (type === 'email') {
-      if (val === '') {
-        errorMailRegister = 'Your email can not be blank';
-        $('.social-login .registration-submit').attr('disabled', true);
-      } else if (!validateEmail(val)) {
-        errorMailRegister = 'Please provide an valid email address';
-        $('.social-login .registration-submit').attr('disabled', true);
-      } else {
-        errorMailRegister = '';
-      }
-
-      if (errorMailRegister === '') {
-        errorElement.css('display', 'none');
-        errorElementInner.html('');
-
-        if (errorPwRegister === '') {
-          $('.social-login .registration-submit').attr('disabled', false);
-        }
-      } else {
-        errorElement.css('display', 'flex');
-        errorElementInner.html(errorMailRegister);
-      }
-    }
-  });
-  $('.social-login--signup .social-login__form input').on('keyup', (event) => {
-    const $this = $(event.target);
-    const type = $this.attr('type');
-    const val = $this.val();
-    const errorElement = $('.social-login--signup .social-login__error');
-    const errorElementInner = $('.social-login--signup .social-login__errorLabel');
-
-
-    if (type === 'password') {
-      if (val.length < 8) {
-        errorPwRegister = null;
-        $('.social-login .registration-submit').attr('disabled', true);
-      } else {
-        errorPwRegister = '';
-      }
-
-      if (errorPwRegister === '') {
-        errorElement.css('display', 'none');
-        errorElementInner.html('');
-
-        if (errorMailRegister === '') {
-          $('.social-login .registration-submit').attr('disabled', false);
-        }
-      }
-    }
-  });
-  $('.social-login--login .social-login__form input').on('focusout', (event) => {
-    const $this = $(event.target);
-    const type = $this.attr('type');
-    const val = $this.val();
-    const errorElement = $('.social-login--login .social-login__error');
-    const errorElementInner = $('.social-login--login .social-login__errorLabel');
-
-    if (type === 'email') {
-      if (val === '') {
-        errorMailLogin = 'Your email can not be blank';
-        $('.social-login .login-submit').attr('disabled', true);
-      } else if (!validateEmail(val)) {
-        errorMailLogin = 'Please provide an valid email address';
-        $('.social-login .login-submit').attr('disabled', true);
-      } else {
-        errorMailLogin = '';
-      }
-
-      if (errorMailLogin === '') {
-        errorElement.css('display', 'none');
-        errorElementInner.html('');
-
-        if (errorPwLogin === '') {
-          $('.social-login .login-submit').attr('disabled', false);
-        }
-      } else {
-        errorElement.css('display', 'flex');
-        errorElementInner.html(errorMailLogin);
-      }
-    }
-  });
-  $('.social-login--login .social-login__form input').on('keyup', (event) => {
-    const $this = $(event.target);
-    const type = $this.attr('type');
-    const val = $this.val();
-    const errorElement = $('.social-login--login .social-login__error');
-    const errorElementInner = $('.social-login--login .social-login__errorLabel');
-
-
-    if (type === 'password') {
-      if (val.length < 8) {
-        errorPwLogin = null;
-        $('.social-login .login-submit').attr('disabled', true);
-      } else {
-        errorPwLogin = '';
-      }
-
-      if (errorPwLogin === '') {
-        errorElement.css('display', 'none');
-        errorElementInner.html('');
-
-        if (errorMailLogin === '') {
-          $('.social-login .login-submit').attr('disabled', false);
-        }
-      }
-    }
-  });
-
-
-  $('.social-login--signup .social-login__form').on('submit', (event) => {
-    event.preventDefault();
-    const errorElement = $('.social-login--signup .social-login__error');
-    const errorElementInner = $('.social-login--signup .social-login__errorLabel');
-
-    const fields = {};
-    const $form = $(event.target);
-    $form.serializeArray().forEach(({ name, value }) => {
-      fields[name] = value;
-    });
-
-    axios.post(`http://${API_HOST}/v1/onboarding/signup`, assign({}, fields, {
-      password_confirmation: fields.password,
-    })).then((data) => {
-      Cookies.set('client', data.headers.client);
-      Cookies.set('uid', data.headers.uid);
-      Cookies.set('token', data.headers['access-token']);
-
-      window.location.href = `http://${CLIENT_HOST}/dashboard/initial?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
-    }).catch((err) => {
-      errorElementInner.html(`Email ${err.response.data.errors.email[0]}`);
-      errorElement.css('display', 'flex');
-    });
-  });
-
-  $('.social-login--login .social-login__form').on('submit', (event) => {
-    event.preventDefault();
-    const errorElement = $('.social-login--login .social-login__error');
-    const errorElementInner = $('.social-login--login .social-login__errorLabel');
-
-    const fields = {};
-    const $form = $(event.target);
-    $form.serializeArray().forEach(({ name, value }) => {
-      fields[name] = value;
-    });
-
-    axios.post(`https://${API_HOST}/v1/auth/sign_in`, assign({}, fields, {
-      password_confirmation: fields.password,
-    })).then((data) => {
-      Cookies.set('client', data.headers.client);
-      Cookies.set('uid', data.headers.uid);
-      Cookies.set('token', data.headers['access-token']);
-
-      window.location.href = `http://${CLIENT_HOST}/dashboard/overview?token=${data.headers['access-token']}&blank=true&client_id=${data.headers.client}&config=&expiry=${data.headers.expiry}&email_registration=true&uid=${data.headers.uid}`;
-    }).catch((err) => {
-      errorElementInner.html(err.response.data.errors[0]);
-      errorElement.css('display', 'flex');
-    });
-  });
-
-  /**
-   * Social Login Forgotten Password
-   */
-
-  const resetSwiper = $('.social-login--email .social-login__box').slick({
-    dots: false,
-    fade: true,
-    infinite: false,
-    arrows: false,
-    draggable: false,
-    touchMove: false,
-    swipe: false,
-    swipeToSlide: false,
-  });
-
-  $('[data-launch-password]').on('click', () => {
-    $('.social-login--auth').removeClass('social-login--active');
-    $('.social-login--email').addClass('social-login--active');
-  });
-
-  $('.social-login--email .social-login__form input').on('keyup', (event) => {
-    const { value } = event.currentTarget;
-    $('#reset-submit').attr('disabled', !(value !== '' && validateEmail(value)));
-  });
-
-  $('.social-login--email .social-login__form').on('submit', (event) => {
-    event.preventDefault();
-    const errorElement = $('.social-login--email .social-login__error');
-    const errorElementInner = $('.social-login--email .social-login__errorLabel');
-
-    $('#reset-submit').attr('disabled', true);
-
-    const fields = {};
-    const $form = $(event.target);
-    $form.serializeArray().forEach(({ name, value }) => {
-      fields[name] = value;
-    });
-
-    axios.post(`https://${API_HOST}/v1/auth/password`, assign({}, fields, {
-      redirect_url: `http://${SELF_HOST}/`,
-    })).then((data) => {
-      $('#reset-submit').attr('disabled', false);
-      resetSwiper.slick('slickNext');
-    }).catch((err) => {
-      $('#reset-submit').attr('disabled', false);
-      errorElementInner.html(err.response.data.errors[0]);
-      errorElement.css('display', 'flex');
-    });
-  });
-});
-
-let newPw = '';
-let newPwConf = ' ';
-
-$('.social-login--password input[name="password"]').on('focusout', (event) => { newPw = $(event.currentTarget).val() });
-
-$('.social-login--password--conf').on('keyup', (event) => {
-  newPwConf = $(event.currentTarget).val();
-  console.log(newPw, newPwConf);
-
-  if ((newPw === newPwConf) && (newPw.length >= 8)) {
-    $('.social-login--password .reset-submit').attr('disabled', false);
-  } else {
-    $('.social-login--password .reset-submit').attr('disabled', true);
-  }
-});
-
-$('.social-login__form--password').on('submit', (event) => {
-  event.preventDefault();
-
-  axios({
-    method: 'put',
-    url: `https://${API_HOST}/v1/auth/password`,
-    headers: {
-      'Content-Type': 'application/json',
-      'access-token': Cookies.get('token'),
-      client: Cookies.get('client'),
-      uid: Cookies.get('uid'),
-    },
-    data: {
-      password: newPw,
-      password_confirmation: newPwConf,
-    },
-  })
-    .then((data) => {
-      console.log(data);
-
-      $('.social-login--password .reset-submit').attr('disabled', true);
-      $('.social-login--password .reset-submit').html('Password has been reset!');
-      $('.reset-success').css('display', 'block');
-    }).catch((error) => {
-      console.log(error.response.data);
-    })
-});
-
-$('.reset-success').on('click', () => {
-  $('.social-login--password').removeClass('social-login--active');
-
-  setTimeout(() => {
-    $('#get-started').click();
-  }, 50);
-});
-
-
-function scorePassword(pass) {
-    var score = 0;
-    if (!pass)
-        return score;
-
-    // award every unique letter until 5 repetitions
-    var letters = new Object();
-    for (var i=0; i<pass.length; i++) {
-        letters[pass[i]] = (letters[pass[i]] || 0) + 1;
-        score += 5.0 / letters[pass[i]];
-    }
-
-    // bonus points for mixing it up
-    var variations = {
-        digits: /\d/.test(pass),
-        lower: /[a-z]/.test(pass),
-        upper: /[A-Z]/.test(pass),
-        nonWords: /\W/.test(pass),
-    }
-
-    var variationCount = 0;
-    for (var check in variations) {
-        variationCount += (variations[check] == true) ? 1 : 0;
-    }
-    score += (variationCount - 1) * 10;
-
-    return parseInt(score);
-}
-
-function checkPassStrength(pass) {
-    var score = scorePassword(pass);
-    if (score > 80)
-      return "#1ed761";
-    if (score > 60)
-      return "#ffce46";
-    if (score >= 0)
-      return "#dd5044";
-
-    return "";
-}
-
-$(document).ready(function() {
-  $('.rs-passwordStrength input').on('keypress keyup keydown', function() {
-    var pass = $(this).val();
-    let score = scorePassword(pass);
-    const color = checkPassStrength(pass);
-
-    if (score > 100) {
-      score = 100;
-    }
-
-    $('.rs-passwordStrengthLine').css({ backgroundColor: color, width: `${score}%` });
-  });
-
-  $('.social-login__form--signup input[type="password"]').on('keypress keyup keydown', function() {
-    var pass = $(this).val();
-    let score = scorePassword(pass);
-    const color = checkPassStrength(pass);
-
-    if (score > 100) {
-      score = 100;
-    }
-
-    $('.social-login__form__line').css({ backgroundColor: color, width: `${score}%` });
-  });
-});
+})

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/icn-launch</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rensource_Company_V1b" transform="translate(-1123.000000, -1976.000000)" fill="#A5C44C">
+            <path d="M1123,1976 L1127.66667,1976 L1127.66667,1978.33333 L1125.33333,1978.33333 L1125.33333,1987.66667 L1134.66667,1987.66667 L1134.66667,1985.33333 L1137,1985.33333 L1137,1990 L1123,1990 L1123,1976 Z M1130,1976 L1137,1976 L1137,1983 L1134.66667,1980.66667 L1130,1985.33333 L1127.66667,1983 L1132.33333,1978.33333 L1130,1976 Z" id="icons/icn-launch"></path>
+        </g>
+    </g>
+</svg>
