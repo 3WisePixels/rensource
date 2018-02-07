@@ -5071,10 +5071,12 @@ a.text-danger:focus, a.text-danger:hover {
   ===================== */
 body {
   background: white;
-  font-family: "Roboto", "Helvetica", "Arial", "Verdana", sans-serif;
+  font-family: "Gotham", "Helvetica", "Arial", "Verdana", sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  background: #fafafa; }
+  background: #fafafa;
+  letter-spacing: 0.01em;
+  font-weight: 400; }
 
 a {
   color: #FCC04E; }
@@ -5099,13 +5101,13 @@ img {
 h3 {
   font-size: 2.5rem;
   line-height: 1.3em;
-  font-weight: 100; }
+  font-weight: 300; }
   h3.centered {
     text-align: center; }
     h3.centered::before {
       margin: 0 auto 1rem; }
   h3 b {
-    font-weight: 400; }
+    font-weight: 500; }
   @media (max-width: 991px) {
     h3 {
       font-size: 2rem;
@@ -5596,11 +5598,11 @@ p {
     .rs-section-teaser-content p {
       font-size: 1.125rem;
       color: currentColor;
-      font-weight: 100;
       padding: 0 10%;
       letter-spacing: 0;
       line-height: 1.75rem;
-      margin-bottom: 2.5rem; }
+      margin-bottom: 2.5rem;
+      opacity: 0.65; }
       @media (max-width: 767px) {
         .rs-section-teaser-content p {
           font-size: 1rem;
@@ -5861,8 +5863,7 @@ p {
     background-repeat: no-repeat;
     background-size: auto 100%; }
     .rs-section-stories .slider .slick-slide p {
-      font-size: 1.125rem;
-      font-weight: 100; }
+      font-size: 1.125rem; }
   .rs-section-stories .slick-arrow {
     position: absolute;
     z-index: 8;
