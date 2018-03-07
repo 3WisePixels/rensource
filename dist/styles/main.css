@@ -6658,6 +6658,8 @@ p {
     color: #444444;
     letter-spacing: 0;
     line-height: 28px; }
+  .rs-section-map.is-full {
+    height: 100vh; }
 
 .rs-section-magazine-show {
   background: white;

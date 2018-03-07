@@ -24,4 +24,8 @@
     letter-spacing: 0;
     line-height: 28px;
   }
+
+  &.is-full {
+    height: 100vh;
+  }
 }
