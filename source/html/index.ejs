@@ -13,7 +13,7 @@
           <%- include partials/header.ejs %>
           <div id="hero">
               <video autoplay id="bgvideo" width="1000" height="1000">
-                <source src="/images/video.mp4" type="video/mp4">
+                <source src="/images/video_15.mp4" type="video/mp4">
               </video>
               <div class="WPTitleCentre">
                   <br>
@@ -38,7 +38,8 @@
         </div>
       </div>
       <div class="WPfullwidth">
-          <img src="/images/infopic.jpg" alt="rensource description">
+        <div class="fullSceneImg" style="background-image:url(/images/infopic.jpg)"></div>
+          <!-- <img src="/images/infopic.jpg" alt="rensource description"> -->
       </div>
 
     </section><!-- END.About -->
@@ -54,15 +55,14 @@
                 <input id="tab-1" type="radio" name="tabs" checked="checked"/>
                 <input id="tab-2" type="radio" name="tabs"/>
                 <input id="tab-3" type="radio" name="tabs"/>
-                <div class="row tabs">
+                
+                  <div class="row container tabs" style="margin:auto;">
                   <label class="tabsize" for="tab-1">POWER GENERATION</label>
                   <label class="tabsize" for="tab-2">DISTRIBUTION</label>
                   <label class="tabsize" for="tab-3">CUSTOMER SERVICE</label>
+                  </div>
 
-
-
-                </div>
-                <div class="content">
+                <div class="content container-fluid">
                   <div class="tab">
                       <div class="row">
                         <div class="col-md-6">
@@ -134,7 +134,7 @@
 
     <section class="WPKpiRow">
       <h2> Our KPI's</h2>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row WPKpiDetails">
           <div class="col-md-4">
             <p>Number of Markets</p>

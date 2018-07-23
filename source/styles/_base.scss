@@ -339,6 +339,26 @@ font-size: 1.3rem;
 }
 
 
+/*Update*/
+.rs-section-teaser--night,.rs-section-about{
+  height:100vh  ;
+}
+.rs-section-about .fullSceneImg{
+  background:no-repeat center top;
+  background-size:cover;
+  height:55vh;
+  margin-top:5%;
+}
+.WPMicro{
+  background:#fff;
+  height: 66vh;
+  /*padding: 3.25rem 0;*/
+}
+
+.WPMicro .tabcontainer{
+  margin:0 auto;
+  width:100%;
+}
 section.WPKpiRow{
   background: url(../images/background-night1.jpg) no-repeat center bottom;
   background-size: 100%;
@@ -368,9 +388,16 @@ section.WPService{
 }
 
 .WPservLeft {
-  height: 25vh;
-    box-shadow: 0 0 5px 4px #272323;
+  /*height: 25vh;*/
+    /*box-shadow: 0 0 5px 4px #272323;*/
     border-radius: 0 40px 40px 0;
+}
+.wpServImg{
+  background:no-repeat center;
+  background-size:cover;
+  height:60vh;
+  border-radius: 0 40px 40px 0;
+
 }
 .WPservRight {
   height: 25vh;
