@@ -5236,7 +5236,11 @@ video#bgvideo {
   font-weight: bold;
   border-radius: 40px;
   text-align: center !important;
-  text-decoration: none; }
+  text-decoration: none;
+  display: block;
+  width: 33%;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
 .mn-R-8 {
   right: -8%; }
@@ -5246,7 +5250,8 @@ video#bgvideo {
   text-align: center; }
 
 .ServCallToAction {
-  margin-bottom: 5%; }
+  margin: 5% auto;
+  height: 21vh; }
 
 .WPfirstIntroDesc h3::before, section.WPMicro h3::before {
   display: none; }
@@ -5355,6 +5360,9 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
   font-size: 1.3rem; }
 
 /*Update*/
+.text-right {
+  text-align: right; }
+
 .rs-section-teaser--night, .rs-section-about {
   height: 100vh; }
 
@@ -5380,11 +5388,13 @@ section.WPKpiRow {
   padding: 10.25rem 0; }
 
 .ServmapArea {
-  margin-top: -20%;
-  margin-bottom: -5%; }
+  /*margin-top: -20%;*/
+  /*margin-bottom: -5%;*/ }
 
-.ServmapArea img {
-  padding: 23%; }
+.ServmapArea .servMapImg {
+  background: no-repeat center;
+  background-size: contain;
+  height: 55vh; }
 
 .WPKpiDetails p {
   text-align: center;
@@ -5403,29 +5413,42 @@ section.WPService {
 .wpServImg {
   background: no-repeat center;
   background-size: cover;
-  height: 60vh;
-  border-radius: 0 40px 40px 0; }
+  height: 45vh;
+  border-radius: 0 40px 40px 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
 .WPservRight {
-  height: 25vh;
-  box-shadow: 0 0 5px 4px #272323;
+  /*height: 25vh;*/
+  /*box-shadow: 0 0 5px 4px #272323;*/
   border-radius: 40px 0 0 40px; }
 
 .WPServPRight {
-  width: 80%;
+  /*width: 80%;*/
   font-size: 1.4rem; }
 
 .WPServPLeft {
-  width: 80%;
+  /*width: 80%;*/
   font-size: 1.4rem;
   text-align: right; }
 
 .WPEachServ h3 {
-  font-weight: bold; }
+  font-weight: bold;
+  position: relative; }
 
 .WPEachServ h3::before {
   height: 5px !important;
-  width: 60px !important; }
+  width: 60px !important;
+  margin-right: 0; }
+
+.WPEachServ .ServtextLeft h3 {
+  padding-top: 4.5%; }
+
+.WPEachServ .ServtextLeft h3::before {
+  height: 5px !important;
+  width: 60px !important;
+  right: 0;
+  position: absolute;
+  top: 0; }
 
 .WPEachServ {
   margin-bottom: 10%; }
