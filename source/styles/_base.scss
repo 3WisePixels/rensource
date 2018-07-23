@@ -134,13 +134,15 @@ p {
 
     height: 45rem;
     position: relative;
-    background-color: #ebf7f9;
-    background-image: url(../images/sections/teaser/background-day.jpg);
+    // background-color: #ebf7f9;
+    // background-image: url(../images/sections/teaser/background-day.jpg);
     background-size: 100% auto;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: bottom center;
     color: #222222;
+    padding-top: 20%;
+
   }
 
 
@@ -157,7 +159,7 @@ p {
       -moz-transform: translateX(-50%) translateY(-50%);
       -webkit-transform: translateX(-50%) translateY(-50%);
       transform: translateX(-50%) translateY(-50%);
-      background: url(placeholder.jpg) no-repeat;
+      // background: url(placeholder.jpg) no-repeat;
       background-size: cover;
       }
 
@@ -203,6 +205,7 @@ p {
         font-weight: bold;
         border-radius: 40px;
         text-align: center !important;
+        text-decoration: none;
 
       }
       .mn-R-8{
@@ -230,7 +233,9 @@ p {
         margin-top:20px;
       }
       .WPfullwidth img{
-        height: 30vh;
+        display: block;
+    width: 100%;
+    height: auto;
       }
 
       /*TABS*/
@@ -283,7 +288,7 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
   position: relative;
   color: #bbc3d1;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   cursor: pointer;
@@ -405,4 +410,41 @@ text-align:center !important;
 .ServPhone{
   height: 45vh;
   margin-left: 15%;
+}
+
+@media screen and (min-width: 320px )  and (max-width: 768px ){
+  .WPservLeft, .WPservRight{
+    padding: 0%;
+    border-radius: 0px;
+    box-shadow: 0 5px 20px;
+  }
+  h3{
+    font-size: 1.4rem;
+    padding: 2%;
+  }
+  p.WPServPRight,  p.WPServPLeft {
+    font-size: 1.1rem;
+    padding: 2%;
+    width: 100%;
+    text-align: left;
+  }
+  .mn-R-8{
+    right: 0px !important;
+  }
+
+  .ServtextLeft{
+    left: 0 !important;
+  }
+  .ServPhone{
+  height: auto;
+    margin-left: 0px;
+  }
+  .ServCallToAction h2{
+    font-size: 1.5rem;
+
+  }
+  .ServCallToAction a{
+  padding: 5px 15px;
+  font-size: 16px;
+  }
 }
