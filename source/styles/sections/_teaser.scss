@@ -1,12 +1,14 @@
 .rs-section-teaser {
-  height: 75rem;
+  height: 45rem;
   position: relative;
+  padding-top: 20%;
   background-color: #ebf7f9;
   @include image-2x('../images/sections/teaser/background-day', 'jpg', 100%, auto);
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: bottom center;
   color: #222222;
+  display: flex;
 
 
 
