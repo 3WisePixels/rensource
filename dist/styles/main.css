@@ -5360,6 +5360,13 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
   font-size: 1.3rem; }
 
 /*Update*/
+.rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
+  font-weight: bold; }
+
+.rs-header__container {
+  padding-top: 1em;
+  padding-bottom: 1em; }
+
 .text-right {
   text-align: right; }
 
@@ -5441,7 +5448,7 @@ section.WPService {
   margin-right: 0; }
 
 .WPEachServ .ServtextLeft h3 {
-  padding-top: 4.5%; }
+  padding-top: 5%; }
 
 .WPEachServ .ServtextLeft h3::before {
   height: 5px !important;
@@ -5633,16 +5640,13 @@ section.WPService {
     .rs-header-nav > li > span:hover,
     .rs-header-nav a:not(.button):hover {
       opacity: .7; }
-  .rs-header-nav > li > span,
-  .rs-header-nav > li > a:not(.button) {
+  .rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
     margin: 0 .75rem; }
     @media (max-width: 991px) {
-      .rs-header-nav > li > span,
-      .rs-header-nav > li > a:not(.button) {
+      .rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
         margin: 0 .5rem; } }
     @media (max-width: 767px) {
-      .rs-header-nav > li > span,
-      .rs-header-nav > li > a:not(.button) {
+      .rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
         margin: 0 .5rem; } }
   .rs-header-nav .button {
     margin-left: 1.5rem; }

@@ -346,6 +346,13 @@ font-size: 1.3rem;
 
 
 /*Update*/
+.rs-header-nav > li > span, .rs-header-nav > li > a:not(.button){
+  font-weight:bold;
+}
+.rs-header__container {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
 .text-right{
   text-align:right;
 }
@@ -436,7 +443,7 @@ width: 60px !important;
 margin-right: 0;
 }
 .WPEachServ .ServtextLeft h3{
-  padding-top: 4.5%;
+  padding-top: 5%;
 }
 .WPEachServ .ServtextLeft h3::before{
 height: 5px !important;
