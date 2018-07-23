@@ -7,7 +7,7 @@
 // }
 
 body {
-  background: white;
+  background: white !important;
   // font-family: "Gotham", "Helvetica", "Arial", "Verdana", sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -124,4 +124,285 @@ p {
     left: 0;
     transition-duration: 300ms;
   }
+}
+
+
+/* ====================
+  3WP
+  ===================== */
+  .WPrs-section-hero{
+  
+    height: 45rem;
+    position: relative;
+    background-color: #ebf7f9;
+    background-image: url(../images/sections/teaser/background-day.jpg);
+    background-size: 100% auto;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    color: #222222;
+  }
+
+ 
+    video#bgvideo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      -ms-transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      background: url(placeholder.jpg) no-repeat;
+      background-size: cover;
+      }
+      
+      .WPHomeMainTitle h1{
+     
+    color: #FCC04E !important; 
+      }
+      
+      .WPTitleCentre{
+        width: 65% !important;
+        text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+      }
+
+      .WPfirstIntroDesc h3, section.WPMicro h3{
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      .WPKpiRow h2{
+        font-size: 2.8rem;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .ServCallToAction h2{
+        font-size: 4.5rem;
+        text-align: center;
+        font-weight: bold;
+        color: #0a3652;
+        margin-bottom: 20px;
+      }
+
+      .ServCallToAction a{
+        background: #FCC04E;
+        padding: 15px 45px;
+        font-size: 30px;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 40px;
+        text-align: center !important;
+       
+      }
+      .mn-R-8{
+        right: -8%;
+      }
+      .servSpacer p{
+        color: #fff;
+        text-align: center
+      }
+
+      .ServCallToAction{
+        margin-bottom: 5%;
+      }
+
+      .WPfirstIntroDesc h3::before  , section.WPMicro h3::before{
+        display: none;
+      }
+
+      .WPfirstIntroDesc p{
+      font-size: 1.6rem;
+      text-align: center;
+      }
+      .WPfullwidth{
+        width: 100%;
+        margin-top:20px;
+      }
+      .WPfullwidth img{
+        height: 30vh;
+      }
+
+      /*TABS*/
+
+input[name="tabs"] {
+  display: none;
+}
+input[name="tabs"]#tab-1:checked ~ .content .tab:nth-of-type(1) {
+  display: inline-block;
+}
+input[name="tabs"]#tab-1:checked ~ .tabs label:nth-child(1) {
+  color: #242b36;
+}
+input[name="tabs"]#tab-1:checked ~ .tabs label:nth-child(1):after {
+  width: calc(100% - 40px);
+  transition: .3s;
+}
+input[name="tabs"]#tab-2:checked ~ .content .tab:nth-of-type(2) {
+  display: inline-block;
+}
+input[name="tabs"]#tab-2:checked ~ .tabs label:nth-child(2) {
+  color: #242b36;
+}
+input[name="tabs"]#tab-2:checked ~ .tabs label:nth-child(2):after {
+  width: calc(100% - 40px);
+  transition: .3s;
+}
+input[name="tabs"]#tab-3:checked ~ .content .tab:nth-of-type(3) {
+  display: inline-block;
+}
+input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3) {
+  color: #242b36;
+}
+input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
+  width: calc(100% - 40px);
+  transition: .3s;
+}
+
+
+.tabs {
+  
+  overflow-X: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  white-space: nowrap;
+}
+.tabs label {
+  display: inline-block;
+  padding: 18px;
+  position: relative;
+  color: #bbc3d1;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+}
+.tabs label:after {
+  content: '';
+  background: #fbcd60;
+  width: 0;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: .1s;
+}
+
+.tabcontainer {
+  background: #FFF;
+  width: 90%;
+  border-radius: 3px;
+  
+  margin: 25px auto;
+  overflow: hidden;
+}
+.tabcontainer .tab {
+  display: none;
+  background: #fff;
+  padding: 0 20px;
+}
+
+.row.tabs .col-md-4{
+  text-align: center;
+}
+
+.tabsize{
+  width: 33% !important;
+  text-align: center;
+}
+
+.content .tab{
+  padding-top: 20px;
+}
+.content .tab img{
+  height: 17vh;
+}
+.content .tab p{
+font-size: 1.3rem;
+}
+
+
+section.WPKpiRow{
+  background: url(../images/villagelights.jpg) !important;
+  background-size: cover;
+  color: #fff;
+  padding: 10.25rem 0;
+}
+
+.ServmapArea{
+  margin-top: -20%;
+  margin-bottom: -5%;
+}
+
+.ServmapArea img{
+  
+  padding: 23%;
+}
+
+.WPKpiDetails p{
+  text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 5%;
+}
+
+section.WPService{
+  margin-top: -10%;
+}
+
+.WPservLeft {
+  height: 25vh;
+    box-shadow: 0 0 5px 4px #27232373;
+    border-radius: 0 40px 40px 0;
+}
+.WPservRight {
+  height: 25vh;
+    box-shadow: 0 0 5px 4px #27232373;
+    border-radius: 40px 0 0 40px;
+}
+
+.WPServPRight{
+   width: 80%;
+   font-size: 1.4rem;
+}
+.WPServPLeft{
+  width: 80%;
+  font-size: 1.4rem;
+  text-align: right;
+}
+
+.WPEachServ h3{
+  font-weight: bold;
+}
+.WPEachServ h3::before{
+height: 5px !important;
+width: 60px !important;
+}
+
+.WPEachServ{
+  margin-bottom: 10%;
+}
+
+.ServtextLeft{
+  left: 5%;
+}
+.center{
+text-align:center !important;
+}
+
+.ServPhone{
+  height: 45vh;
+  margin-left: 15%;
 }
