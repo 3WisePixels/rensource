@@ -5178,8 +5178,6 @@ p {
 .WPrs-section-hero {
   height: 45rem;
   position: relative;
-  background-color: #ebf7f9;
-  background-image: url(../images/sections/teaser/background-day.jpg);
   background-size: 100% auto;
   background-size: 100% auto;
   background-repeat: no-repeat;
@@ -5759,7 +5757,7 @@ section.WPService {
 /**! Sections
  ================================= */
 .rs-section-teaser {
-  height: 75rem;
+  height: 45rem;
   position: relative;
   padding-top: 20%;
   background-color: #ebf7f9;
