@@ -88,6 +88,25 @@ $(document).ready(() => {
       $('.error-field-last').html('<div class="error-icon">!</div>Your emails must match.');
     }
   });
+  // Counter
+  $('.WPKpiRow').waypoint(function(direction){
+    $('.count').each(function () {
+      $(this).prop('Counter',0).animate({
+          Counter: $(this).text()
+      }, {
+          duration: 4000,
+          easing: 'swing',
+          step: function (now) {
+              $(this).text(Math.ceil(now));
+          }
+      });
+    });
+    this.destroy()
+  },{
+   //bottom-in-view will ensure event is thrown when the element's bottom crosses
+   //bottom of viewport.
+   offset: 'bottom-in-view'
+  });
 
   $('[name="email"]').on('change', (event) => {
     function validateEmail(mail) {
