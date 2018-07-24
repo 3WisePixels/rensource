@@ -5070,7 +5070,7 @@ a.text-danger:focus, a.text-danger:hover {
   Base
   ===================== */
 body {
-  background: white !important;
+  background: white;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   background: #fafafa;
@@ -5196,9 +5196,6 @@ video#bgvideo {
   z-index: -100;
   transform: translateX(-50%) translateY(-50%);
   background-size: cover; }
-
-.WPHomeMainTitle h1 {
-  color: #FCC04E !important; }
 
 .WPTitleCentre {
   width: 65% !important;
@@ -5374,7 +5371,7 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
   height: 100vh; }
 
 .rs-section-about {
-  height: 100%; }
+  height: 100vh; }
 
 .rs-section-about .fullSceneImg {
   background: no-repeat center top;
@@ -5384,8 +5381,8 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
 
 .WPMicro {
   background: #fff;
-  height: 85vh;
-  /*padding: 3.25rem 0;*/ }
+  height: 72vh;
+  padding: 3.25rem 0; }
 
 .WPMicro .tabcontainer {
   margin: 0 auto;
@@ -5497,7 +5494,12 @@ section.WPService {
     font-size: 1.5rem; }
   .ServCallToAction a {
     padding: 5px 15px;
-    font-size: 16px; } }
+    font-size: 16px; }
+  h1.WPHomeMainTitle {
+    margin-top: 25%;
+    font-size: 1.5rem; }
+  .WPTitleCentre {
+    width: 95% !important; } }
 
 /*
 VIDEO CONTROLS
