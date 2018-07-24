@@ -266,7 +266,7 @@ html {
 html {
   font-size: 16px;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -4270,7 +4270,7 @@ button.close {
     margin: 1px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0);
     border: 1px solid #fff;
     border-radius: 10px; }
   .carousel-indicators .active {
@@ -5371,7 +5371,7 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
   height: 100vh; }
 
 .rs-section-about {
-  height: 100vh; }
+  min-height: 100vh; }
 
 .rs-section-about .fullSceneImg {
   background: no-repeat center top;
@@ -5709,16 +5709,13 @@ VIDEO CONTROLS
     .rs-header-nav > li > span:hover,
     .rs-header-nav a:not(.button):hover {
       opacity: .7; }
-  .rs-header-nav > li > span,
-  .rs-header-nav > li > a:not(.button) {
+  .rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
     margin: 0 .75rem; }
     @media (max-width: 991px) {
-      .rs-header-nav > li > span,
-      .rs-header-nav > li > a:not(.button) {
+      .rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
         margin: 0 .5rem; } }
     @media (max-width: 767px) {
-      .rs-header-nav > li > span,
-      .rs-header-nav > li > a:not(.button) {
+      .rs-header-nav > li > span, .rs-header-nav > li > a:not(.button) {
         margin: 0 .5rem; } }
   .rs-header-nav .button {
     margin-left: 1.5rem; }
@@ -7343,7 +7340,7 @@ VIDEO CONTROLS
       .rs-switcher-input .col:first-child img,
       .rs-switcher-input .col:last-child img {
         margin-right: .5rem; }
-    .rs-switcher-input .col:not(:first-child):not(:last-child) {
+    .rs-switcher-input .col {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
       padding: 0 2rem; }
