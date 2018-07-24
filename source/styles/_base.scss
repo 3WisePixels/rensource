@@ -357,7 +357,7 @@ font-size: 1.3rem;
   text-align:right;
 }
 .rs-section-teaser--night{
-  height:50vh;
+  height:100vh;
 }
 .rs-section-about{
   height:100%  ;
@@ -509,3 +509,75 @@ text-align:center !important;
   font-size: 16px;
   }
 }
+
+
+
+
+/*
+VIDEO CONTROLS
+*/
+.play-bt{width:50px; 
+  height:50px; 
+  border-radius:50%; 
+  padding:5px; 
+  background:url(../images/play-button.png) no-repeat 5px;
+  position: absolute;
+  bottom:25px;
+  right: 80px; 
+  margin-left:-25px; 
+  margin-top:-40px;
+  z-index: 99; 
+  cursor:pointer;
+}
+
+.pause-bt{width:50px; 
+  height:50px; 
+  border-radius:50%; 
+  padding:5px; 
+  background: url(../images/pause.png) no-repeat 5px;
+  position: absolute;
+  bottom:25px;
+  right: 80px;
+  margin-left:-25px; 
+  margin-top:-40px;
+  z-index: 99; 
+  cursor:pointer;
+}
+
+
+// .stop-bt{width:50px; 
+//   height:50px; 
+//   border-radius:50%; 
+//   padding:5px; 
+//   background:url(../images/stop.png) no-repeat 5px;
+//   position: absolute;
+//   bottom:25px;
+//   right: 100px; 
+//   margin-left:-25px; 
+//   margin-top:-40px;
+//   z-index: 99; 
+//   cursor:pointer;
+// }
+
+.mute-bt{
+  width:50px; 
+  height:50px; 
+  border-radius:50%; 
+  padding:5px; 
+  background:url(../images/mute.png) no-repeat 5px;
+  position: absolute; 
+  bottom:25px;
+  right: 25px; 
+  margin-left:-25px; 
+  margin-top:-25px;
+  z-index: 99; 
+  cursor:pointer;
+}
+
+.mute-bt.stop{
+  background: url(../images/volume.png) no-repeat 5px;}
+
+.WPtv_video{
+  height: 100%;
+  width: 100%; 
+  object-fit: cover;}

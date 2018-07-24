@@ -107,6 +107,58 @@ $(document).ready(() => {
    //bottom of viewport.
    offset: 'bottom-in-view'
   });
+  /* Video */
+
+  var video1 = document.getElementById("bgvideo");
+  video1.currentTime = 0;
+  $(".mute-bt").click(function () {
+    if ($(this).hasClass("stop")) {
+      var bgvideo = document.getElementById("bgvideo");
+      $("#bgvideo").prop('muted', false);
+      $(this).removeClass("stop");
+    }
+    else {
+      var bgvideo = document.getElementById("bgvideo");
+      $("#bgvideo").prop('muted', true);
+      $(this).addClass("stop");
+    }
+  });
+
+  $(".play-bt").click(function () {
+    $(".play-bt").hide();
+    $(".pause-bt").show();
+    var bgvideo = document.getElementById("bgvideo");
+    if ($(".stop-bt").hasClass("active")) {
+      bgvideo.currentTime = 0;
+    }
+    bgvideo.play();
+  });
+  $(".pause-bt").click(function () {
+    $(".play-bt").show();
+    $(".pause-bt").hide();
+    $(".pause-bt").addClass("active");
+    $(".stop-bt").removeClass("active");
+    var bgvideo = document.getElementById("bgvideo");
+    bgvideo.pause();
+  });
+  // $(".pause-bt").on('click',function () {
+  //   $(".play-bt").show();
+  //   $(".pause-bt").hide();
+  //   $(".pause-bt").addClass("active");
+  //   $(".stop-bt").removeClass("active");
+  //   var bgvideo = document.getElementById("bgvideo");
+  //   bgvideo.pause();
+  // });
+  
+  // $(".stop-bt").click(function () {
+  //   $(".play-bt").show();
+  //   $(".pause-bt").hide();
+  //   $(".pause-bt").removeClass("active");
+  //   $(".stop-bt").addClass("active");
+  //   var bgvideo = document.getElementById("bgvideo");
+  //   bgvideo.currentTime = 0;
+  //   bgvideo.pause();
+  // });
 
   $('[name="email"]').on('change', (event) => {
     function validateEmail(mail) {
