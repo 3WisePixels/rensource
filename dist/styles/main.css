@@ -5382,7 +5382,8 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
 .WPMicro {
   background: #fff;
   height: 72vh;
-  padding: 3.25rem 0; }
+  padding: 3.25rem 0;
+  margin-top: -1px; }
 
 .WPMicro .tabcontainer {
   margin: 0 auto;
