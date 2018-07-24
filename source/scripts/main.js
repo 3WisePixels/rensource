@@ -110,7 +110,9 @@ $(document).ready(() => {
   /* Video */
 
   var video1 = document.getElementById("bgvideo");
-  video1.currentTime = 0;
+  if (video1){
+    video1.currentTime = 0;
+  }
   $(".mute-bt").click(function () {
     if ($(this).hasClass("stop")) {
       var bgvideo = document.getElementById("bgvideo");
