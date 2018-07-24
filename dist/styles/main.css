@@ -5370,8 +5370,11 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
 .text-right {
   text-align: right; }
 
-.rs-section-teaser--night, .rs-section-about {
+.rs-section-teaser--night {
   height: 100vh; }
+
+.rs-section-about {
+  height: 100%; }
 
 .rs-section-about .fullSceneImg {
   background: no-repeat center top;
@@ -5381,7 +5384,7 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
 
 .WPMicro {
   background: #fff;
-  height: 66vh;
+  height: 85vh;
   /*padding: 3.25rem 0;*/ }
 
 .WPMicro .tabcontainer {

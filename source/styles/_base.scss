@@ -356,8 +356,11 @@ font-size: 1.3rem;
 .text-right{
   text-align:right;
 }
-.rs-section-teaser--night,.rs-section-about{
-  height:100vh  ;
+.rs-section-teaser--night{
+  height:100vh;
+}
+.rs-section-about{
+  height:100%  ;
 }
 .rs-section-about .fullSceneImg{
   background:no-repeat center top;
@@ -367,7 +370,7 @@ font-size: 1.3rem;
 }
 .WPMicro{
   background:#fff;
-  height: 66vh;
+  height: 85vh;
   /*padding: 3.25rem 0;*/
 }
 
