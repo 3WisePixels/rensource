@@ -5371,7 +5371,7 @@ input[name="tabs"]#tab-3:checked ~ .tabs label:nth-child(3):after {
   text-align: right; }
 
 .rs-section-teaser--night {
-  height: 100vh; }
+  height: 50vh; }
 
 .rs-section-about {
   height: 100%; }
