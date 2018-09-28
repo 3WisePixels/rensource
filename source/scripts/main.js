@@ -108,59 +108,15 @@ $(document).ready(() => {
    offset: 'bottom-in-view'
   });
   /* Video */
-
-  var video1 = document.getElementById("bgvideo");
-  if (video1){
-    video1.currentTime = 0;
-  }
-  $(".mute-bt").click(function () {
-    if ($(this).hasClass("stop")) {
-      var bgvideo = document.getElementById("bgvideo");
-      $("#bgvideo").prop('muted', false);
-      $(this).removeClass("stop");
-    }
-    else {
-      var bgvideo = document.getElementById("bgvideo");
-      $("#bgvideo").prop('muted', true);
-      $(this).addClass("stop");
-    }
-  });
-
-  $(".play-bt").click(function () {
-    $(".play-bt").hide();
-    $(".pause-bt").show();
-    var bgvideo = document.getElementById("bgvideo");
-    if ($(".stop-bt").hasClass("active")) {
-      bgvideo.currentTime = 0;
-    }
-    bgvideo.play();
-  });
-  $(".pause-bt").click(function () {
-    $(".play-bt").show();
-    $(".pause-bt").hide();
-    $(".pause-bt").addClass("active");
-    $(".stop-bt").removeClass("active");
-    var bgvideo = document.getElementById("bgvideo");
-    bgvideo.pause();
-  });
-  // $(".pause-bt").on('click',function () {
-  //   $(".play-bt").show();
-  //   $(".pause-bt").hide();
-  //   $(".pause-bt").addClass("active");
-  //   $(".stop-bt").removeClass("active");
-  //   var bgvideo = document.getElementById("bgvideo");
-  //   bgvideo.pause();
-  // });
-  
-  // $(".stop-bt").click(function () {
-  //   $(".play-bt").show();
-  //   $(".pause-bt").hide();
-  //   $(".pause-bt").removeClass("active");
-  //   $(".stop-bt").addClass("active");
-  //   var bgvideo = document.getElementById("bgvideo");
-  //   bgvideo.currentTime = 0;
-  //   bgvideo.pause();
-  // });
+$("#headSlider").each(function(){var e,n=$(this),i=n.find(".slide_group"),t=n.find(".slide"),c=0;function l(e){var n,l;s(),i.is(":animated")||c===e||(e>c?(l="100%",n="-100%"):(l="-100%",n="100%"),t.eq(e).css({display:"block",left:l}),i.animate({left:n},function(){t.eq(c).css({display:"none"}),t.eq(e).css({left:0}),i.css({left:0}),c=e}))}function s(){clearTimeout(e),e=setTimeout(function(){c<t.length-1?l(c+1):l(0)},4e3)}$(".headSlider.next_btn").on("click",function(){c<t.length-1?l(c+1):l(0)}),$(".headSlider.previous_btn").on("click",function(){l(0!==c?c-1:3)}),s()});
+    
+    $("#whatSlider").each(function(){var e,n=$(this),i=n.find(".slide_group"),t=n.find(".slide"),c=0;function l(e){var n,l;s(),i.is(":animated")||c===e||(e>c?(l="100%",n="-100%"):(l="-100%",n="100%"),t.eq(e).css({display:"block",left:l}),i.animate({left:n},function(){t.eq(c).css({display:"none"}),t.eq(e).css({left:0}),i.css({left:0}),c=e}))}function s(){clearTimeout(e),e=setTimeout(function(){c<t.length-1?l(c+1):l(0)},4e3)}$(".whatSlider.next_btn").on("click",function(){c<t.length-1?l(c+1):l(0)}),$(".whatSlider.previous_btn").on("click",function(){l(0!==c?c-1:3)}),s()});
+    
+    $("#projSlider").each(function(){var e,n=$(this),i=n.find(".slide_group"),t=n.find(".slide"),c=0;function l(e){var n,l;s(),i.is(":animated")||c===e||(e>c?(l="100%",n="-100%"):(l="-100%",n="100%"),t.eq(e).css({display:"block",left:l}),i.animate({left:n},function(){t.eq(c).css({display:"none"}),t.eq(e).css({left:0}),i.css({left:0}),c=e}))}function s(){clearTimeout(e),e=setTimeout(function(){c<t.length-1?l(c+1):l(0)},4e3)}$(".projSlider.next_btn").on("click",function(){c<t.length-1?l(c+1):l(0)}),$(".projSlider.previous_btn").on("click",function(){l(0!==c?c-1:3)}),s()});
+    
+    $("#opsSlider").each(function(){var e,n=$(this),i=n.find(".slide_group"),t=n.find(".slide"),c=0;function l(e){var n,l;s(),i.is(":animated")||c===e||(e>c?(l="100%",n="-100%"):(l="-100%",n="100%"),t.eq(e).css({display:"block",left:l}),i.animate({left:n},function(){t.eq(c).css({display:"none"}),t.eq(e).css({left:0}),i.css({left:0}),c=e}))}function s(){clearTimeout(e),e=setTimeout(function(){c<t.length-1?l(c+1):l(0)},4e3)}$(".opsSlider.next_btn").on("click",function(){c<t.length-1?l(c+1):l(0)}),$(".opsSlider.previous_btn").on("click",function(){l(0!==c?c-1:3)}),s()});
+    
+    $("#utilSlider").each(function(){var e,n=$(this),i=n.find(".slide_group"),t=n.find(".slide"),c=0;function l(e){var n,l;s(),i.is(":animated")||c===e||(e>c?(l="100%",n="-100%"):(l="-100%",n="100%"),t.eq(e).css({display:"block",left:l}),i.animate({left:n},function(){t.eq(c).css({display:"none"}),t.eq(e).css({left:0}),i.css({left:0}),c=e}))}function s(){clearTimeout(e),e=setTimeout(function(){c<t.length-1?l(c+1):l(0)},4e3)}$(".utilSlider.next_btn").on("click",function(){c<t.length-1?l(c+1):l(0)}),$(".utilSlider.previous_btn").on("click",function(){l(0!==c?c-1:3)}),s()});
 
   $('[name="email"]').on('change', (event) => {
     function validateEmail(mail) {

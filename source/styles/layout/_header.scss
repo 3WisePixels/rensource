@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem;
+//  padding: 1rem;
   z-index: 99;
   transition-duration: 500ms;
   transition-property: background, padding;
@@ -165,7 +165,7 @@
   &-nav > li > span,
   &-nav a:not(.button) {
     font-size: 13px;
-    color: currentColor;
+    color: #FCC04E;
     cursor: pointer;
     pointer-events: all;
     text-transform: uppercase;
